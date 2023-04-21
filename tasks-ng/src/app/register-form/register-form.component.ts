@@ -17,6 +17,7 @@ export class RegisterFormComponent {
   }
   onSubmit(obj:any):void{
     console.log(obj);
+    console.log("test")
 
   }
 

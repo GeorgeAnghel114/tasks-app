@@ -3,6 +3,7 @@ package com.example.TasksAG.controller;
 import com.example.TasksAG.domain.Client;
 import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.service.ClientService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/client")
+@CrossOrigin(value = {"*"})
 public class ClientController {
     private final ClientService clientService;
 

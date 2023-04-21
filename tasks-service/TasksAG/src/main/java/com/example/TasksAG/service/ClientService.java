@@ -1,6 +1,7 @@
 package com.example.TasksAG.service;
 
 import com.example.TasksAG.domain.Client;
+import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,12 @@ public class ClientService {
         Optional<Client> optionalClient = clientRepository.findById(id);
         return optionalClient.orElse(null);
     }
+
+    public void addClient(ClientDTO clientDTO){
+        Client client = Client.builder()
+                .email(clientDTO.getEmail()).username(clientDTO.getUsername()).password(clientDTO.getPassword())
+                .build();
+        clientRepository.save(client);
+    }
+
 }

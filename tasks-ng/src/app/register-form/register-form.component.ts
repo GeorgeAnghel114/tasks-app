@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Register} from "../register";
-import { Clinet} from "../client";
+import {Client} from "../client";
+import {ClientService} from "../service/client-service";
 
 @Component({
   selector: 'app-register-form',
@@ -10,18 +11,15 @@ import { Clinet} from "../client";
 export class RegisterFormComponent {
   submitted:boolean=false;
   registerForm:Register= new Register("Email","User name","Password")
-  client = {
-    email:"",
-    username:"",
-    password:""
-  }
-  onSubmit(obj:any):void{
-    console.log(obj);
-    console.log("test")
+  client: Client = new Client();
 
+  constructor(private clientService:ClientService) {
   }
 
-  newHero(){
-    console.log(new Register("","",""))
+  onSubmit(){
+    this.clientService.save(this.client).subscribe();
   }
+
+
+
 }

@@ -5,18 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import {FormsModule} from "@angular/forms";
+import { HttpClientModule} from "@angular/common/http";
+import { LoginFormComponent } from './login-form/login-form.component';
+import {RouterModule} from "@angular/router";
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    LoginFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  exports:[RouterModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

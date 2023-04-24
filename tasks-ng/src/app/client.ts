@@ -1,6 +1,5 @@
-export interface Clinet{
-
-  email:string,
-  username:string,
-  password:string
+export class Client {
+  email:string="";
+  username:string="";
+  password:string="";
 }

@@ -3,6 +3,9 @@ package com.example.TasksAG.service;
 import com.example.TasksAG.domain.Client;
 import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +29,7 @@ public class ClientService {
         Client client = Client.builder()
                 .email(clientDTO.getEmail())
                 .username(clientDTO.getUsername())
-                .password(passwordEncoder.encode(clientDTO.getPassword()))
+                .password(clientDTO.getPassword())
                 .build();
         clientRepository.save(client);
     }

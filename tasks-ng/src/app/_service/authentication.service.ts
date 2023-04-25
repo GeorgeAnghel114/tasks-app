@@ -5,7 +5,7 @@ import {Client} from "../client";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  client:Client = new Client();
+  client:Client = new Client("","");
   login(username:string,password:string):boolean{
     if(username=='admin' && password=='admin'){
       localStorage.setItem('currentUser','loggedin');

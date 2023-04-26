@@ -41,7 +41,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/client/login").permitAll()
                 )
                 .authorizeRequests((request) -> request.antMatchers(
-                        "/api/home"
+                        "/api/tasks",
+                        "/api/task/get-tasks/*",
+                        "/api/task/add-task/*"
                         ).hasRole("USER")
                         .anyRequest().authenticated())
                 .addFilterBefore(new JWTAuthenticationFilter(clientService, jWTTokenHelper),

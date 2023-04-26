@@ -50,4 +50,8 @@ public class ClientService implements UserDetailsService {
         }
         return user;
     }
+
+    public Client findUserByEmail(String email){
+        return clientRepository.findClientByEmail(email);
+    }
 }

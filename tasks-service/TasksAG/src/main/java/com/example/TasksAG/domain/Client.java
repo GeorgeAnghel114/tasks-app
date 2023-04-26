@@ -1,6 +1,7 @@
 package com.example.TasksAG.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,12 +10,14 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -35,6 +38,9 @@ public class Client implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<String> roles = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.MERGE)
+    @JsonManagedReference
+    private List<Task> taskList;
 
     @Override
     @JsonIgnore

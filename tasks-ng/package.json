@@ -2,11 +2,11 @@
   "name": "tasks-app",
   "version": "0.0.0",
   "scripts": {
-    "ng": "tasks-app/node_modules/.bin/ng",
-    "start": "tasks-app/node_modules/.bin/ng serve",
-    "build": "tasks-app/node_modules/.bin/ng build",
-    "watch": "tasks-app/node_modules/.bin/ng build --watch --configuration development",
-    "test": "tasks-app/node_modules/.bin/ng test"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Client} from "../client";
+import {Client, LoggedUser} from "../client";
 import {AuthenticationService} from "../_service/authentication.service";
 import { Router} from "@angular/router";
 
@@ -9,7 +9,7 @@ import { Router} from "@angular/router";
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-  client:Client = new Client("","");
+  client:Client = {};
   // username:string = '';
   // password:string = '';
 
@@ -20,13 +20,22 @@ export class LoginFormComponent {
   }
 
   login():void{
-    if(this.client.username!='' && this.client.password!=''){
-      if(this._auth.login(this.client.username,this.client.password)){
-        this._router.navigate(['home'])
-      }
-      else{
-        alert("wrong username or password")
-      }
+    if(this.client.username!=undefined && this.client.password!=undefined){
+      this._auth.loginRequest(this.client).subscribe(response => {
+        this._auth.login(response.username);
+
+        console.log(response)
+        if(response){
+          this._router.navigate(['home'])
+        }
+        else{
+          alert("wrong username or password")
+        }
+      }, error => {
+        console.log(error)
+        this._router.navigate(['register'])
+
+      })
     }
   }
 

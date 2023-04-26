@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
-import {Client} from "../client";
+import {HttpClient} from "@angular/common/http";
+import {Client, LoggedUser} from "../client";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  client:Client = new Client("","");
-  login(username:string,password:string):boolean{
-    if(username=='admin' && password=='admin'){
-      localStorage.setItem('currentUser','loggedin');
-      return true;
-    }
-    return false;
+  constructor(public http: HttpClient) {
+
   }
 
-  logout(){
+  login(username: string):void{
+      localStorage.setItem('currentUser',username);
+  }
+
+  loginRequest(client: Client){
+    return this.http.post<LoggedUser>("http://localhost:8080/api/client/login",client)
+  }
+
+  logout() {
     localStorage.removeItem('currentUser')
   }
 
-  public get loggedIn():boolean{
+  public get loggedIn(): boolean{
     return (localStorage.getItem('currentUser')!==null);
   }
-  constructor() { }
 }

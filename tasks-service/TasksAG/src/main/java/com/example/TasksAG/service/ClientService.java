@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,17 +29,17 @@ public class ClientService implements UserDetailsService {
     }
 
     public void addClient(ClientDTO clientDTO){
-//        Client client = Client.builder()
-//                .email(clientDTO.getEmail())
-//                .username(clientDTO.getUsername())
-//                .password(passwordEncoder.encode(clientDTO.getPassword()))
-//                .roles(Collections.singletonList("ROLE_USER"))
-//                .build();
-        Client client = new Client();
-        client.setPassword(passwordEncoder.encode(clientDTO.getPassword()));
-        client.setUsername(clientDTO.getUsername());
-        client.setEmail(clientDTO.getEmail());
-        client.getRoles().add("ROLE_USER");
+        Client client = Client.builder()
+                .email(clientDTO.getEmail())
+                .username(clientDTO.getUsername())
+                .password(passwordEncoder.encode(clientDTO.getPassword()))
+                .roles(List.of("ROLE_USER"))
+                .build();
+//        Client client = new Client();
+//        client.setPassword(passwordEncoder.encode(clientDTO.getPassword()));
+//        client.setUsername(clientDTO.getUsername());
+//        client.setEmail(clientDTO.getEmail());
+//        client.getRoles().add("ROLE_USER");
         clientRepository.save(client);
     }
 

@@ -10,30 +10,22 @@ const routes: Routes = [
     path:'home',
     component:HomeComponent,
     canActivate: [AuthGuard],
-    data:{
-      title:'Home'
-    }
+
   },
   {
     path:'register',
     component:RegisterFormComponent,
-    data:{
-      title:'Register'
-    }
+
   },
   {
     path:'login',
     component:LoginFormComponent,
-    data:{
-      title:'Login'
-    }
+
   },
   {
     path:'',
     component:LoginFormComponent,
-    data:{
-      title:'Login'
-    }
+
   }
 ];
 

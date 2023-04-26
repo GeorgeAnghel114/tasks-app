@@ -11,7 +11,7 @@ import {ClientService} from "../service/client-service";
 export class RegisterFormComponent {
   submitted:boolean=false;
   registerForm:Register= new Register("Email","User name","Password")
-  client: Client = new Client("","");
+  client: Client = {};
 
   constructor(private clientService:ClientService) {
   }

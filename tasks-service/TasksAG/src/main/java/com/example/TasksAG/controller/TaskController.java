@@ -26,7 +26,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/get-tasks/{email}")
+    @GetMapping("/tasks/{email}")
     public List<Task> getClientTasks(@PathVariable String email) {
         List<Task> taskList= taskService.getTasksOfClient(email);
         for (Task task : taskList) {

@@ -5,7 +5,7 @@ import {Task} from "../task";
 
 @Injectable({providedIn:'root'})
 export class TaskService {
-  taskUrl="http://localhost:8080/api/task/get-tasks";
+  taskUrl="http://localhost:8080/api/task/tasks";
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',

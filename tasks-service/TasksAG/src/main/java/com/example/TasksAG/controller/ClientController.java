@@ -38,7 +38,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping("/get-client/{id}")
+    @GetMapping("/{id}")
     public Client getClientById(@PathVariable("id") Long id) {
         return clientService.getClientById(id);
     }
@@ -57,12 +57,9 @@ public class ClientController {
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
                         authenticationRequest.getPassword())
         );
-
-        System.out.println("intra");
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Client client = (Client) authentication.getPrincipal();
         String jwtToken = jwtTokenHelper.generateToken(client);
-        System.out.println("ajunge");
         LoginResponse response = new LoginResponse();
         response.setToken(jwtToken);
         response.setUserId(client.getId());

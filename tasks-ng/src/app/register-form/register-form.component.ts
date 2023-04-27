@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import {Register} from "../register";
-import {Client} from "../client";
-import {ClientService} from "../service/client-service";
+import {Component} from '@angular/core';
+import {Client, RegisterUser} from "../client";
+import {AuthenticationService} from "../_service/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-form',
@@ -9,17 +9,21 @@ import {ClientService} from "../service/client-service";
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent {
-  submitted:boolean=false;
-  registerForm:Register= new Register("Email","User name","Password")
+  submitted: boolean = false;
   client: Client = {};
 
-  constructor(private clientService:ClientService) {
+  constructor(private _auth:AuthenticationService, private _router:Router) {
   }
 
-  onSubmit(){
-    this.clientService.save(this.client).subscribe();
+  register() {
+    this._auth.register(this.client).subscribe(response =>{
+      console.log(response)
+      if(response){
+        this._router.navigate(['login'])
+        alert("Registere completed")
+      }else{
+        alert("Something went wrong. Please try again!")
+      }
+    })
   }
-
-
-
 }

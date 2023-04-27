@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,16 +18,17 @@ public class ClientService implements UserDetailsService {
     private final ClientRepository clientRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
-    public Client getClientById(Long id){
+    public Client getClientById(Long id) {
         Optional<Client> optionalClient = clientRepository.findById(id);
         return optionalClient.orElse(null);
     }
 
-    public void addClient(ClientDTO clientDTO){
+    public void addClient(ClientDTO clientDTO) {
         Client client = Client.builder()
                 .email(clientDTO.getEmail())
                 .username(clientDTO.getUsername())
@@ -46,13 +46,13 @@ public class ClientService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Client user = clientRepository.findClientByUsername(username);
-        if(null == user){
+        if (null == user) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
         return user;
     }
 
-    public Client findUserByEmail(String email){
+    public Client findUserByEmail(String email) {
         return clientRepository.findClientByEmail(email);
     }
 }

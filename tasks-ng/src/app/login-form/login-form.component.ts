@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import {Client, LoggedUser} from "../client";
+import {Component} from '@angular/core';
+import {Client} from "../client";
 import {AuthenticationService} from "../_service/authentication.service";
-import { Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -9,9 +9,8 @@ import { Router} from "@angular/router";
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-  client:Client = {};
-  // username:string = '';
-  // password:string = '';
+  client: Client = {};
+
 
   constructor(private _auth: AuthenticationService, private _router: Router) {
     if (this._auth.loggedIn) {
@@ -19,27 +18,27 @@ export class LoginFormComponent {
     }
   }
 
-  login():void{
-    if(this.client.username!=undefined && this.client.password!=undefined){
+  login(): void {
+    if (this.client.username != undefined && this.client.password != undefined) {
       this._auth.loginRequest(this.client).subscribe(response => {
         this._auth.login(response.username);
 
         console.log(response)
-        if(response){
+        if (response) {
           this._router.navigate(['home'])
-        }
-        else{
+        } else {
           alert("wrong username or password")
         }
       }, error => {
         console.log(error)
+        alert("Wrong credentials! Make an account!")
         this._router.navigate(['register'])
 
       })
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log("you logged in")
   }
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -38,16 +39,17 @@ public class ClientController {
     }
 
     @GetMapping("/get-client/{id}")
-    public Client getClientById(@PathVariable("id") Long id){
+    public Client getClientById(@PathVariable("id") Long id) {
         return clientService.getClientById(id);
     }
+
     @PostMapping("/register")
-    public ClientDTO register(@RequestBody ClientDTO clientDTO){
+    public ClientDTO register(@RequestBody ClientDTO clientDTO) {
         clientService.addClient(clientDTO);
         return clientDTO;
     }
 
-    @PostMapping( "/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest) throws NoSuchAlgorithmException, InvalidKeySpecException {
         System.out.println(authenticationRequest.getUsername());
         System.out.println(authenticationRequest.getPassword());

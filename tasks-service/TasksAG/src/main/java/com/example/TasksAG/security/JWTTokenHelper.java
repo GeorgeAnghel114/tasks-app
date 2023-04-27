@@ -32,7 +32,6 @@ public class JWTTokenHelper {
     private final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
 
 
-
     private Claims getAllClaimsFromToken(String token) {
         Claims claims;
         try {
@@ -61,7 +60,7 @@ public class JWTTokenHelper {
     public String generateToken(Client user) throws InvalidKeySpecException, NoSuchAlgorithmException {
 
         return Jwts.builder()
-                .setIssuer( appName )
+                .setIssuer(appName)
                 .setSubject(user.getEmail())
                 .claim("roles", user.getRoles())
                 .setAudience(String.valueOf(user.getId()))
@@ -85,7 +84,7 @@ public class JWTTokenHelper {
     }
 
     public boolean isTokenExpired(String token) {
-        Date expireDate=getExpirationDate(token);
+        Date expireDate = getExpirationDate(token);
         return expireDate.before(new Date());
     }
 
@@ -113,17 +112,17 @@ public class JWTTokenHelper {
         return issueAt;
     }
 
-    public String getToken( HttpServletRequest request ) {
+    public String getToken(HttpServletRequest request) {
 
-        String authHeader = getAuthHeaderFromHeader( request );
-        if ( authHeader != null && authHeader.startsWith("Bearer ")) {
+        String authHeader = getAuthHeaderFromHeader(request);
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
             return authHeader.substring(7);
         }
 
         return null;
     }
 
-    public String getAuthHeaderFromHeader( HttpServletRequest request ) {
+    public String getAuthHeaderFromHeader(HttpServletRequest request) {
         return request.getHeader("Authorization");
     }
 

@@ -27,13 +27,13 @@ public class TaskController {
     }
 
     @GetMapping("/get-tasks/{email}")
-    public List<Task> getClientTasks(@PathVariable String email){
+    public List<Task> getClientTasks(@PathVariable String email) {
         return taskService.getTasksOfClient(email);
     }
 
     @PostMapping("/add-task/{email}")
-    public void addClientTask(@PathVariable String email, @RequestBody TaskDTO taskDTO){
+    public void addClientTask(@PathVariable String email, @RequestBody TaskDTO taskDTO) {
         System.out.println(taskDTO);
-        taskService.addTaskOfClient(taskDTO,email);
+        taskService.addTaskOfClient(taskDTO, email);
     }
 }

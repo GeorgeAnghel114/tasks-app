@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
@@ -18,16 +19,16 @@ public class TaskService {
         this.clientService = clientService;
     }
 
-    public Task getTaskById(Long id){
+    public Task getTaskById(Long id) {
         Optional<Task> optionalTask = taskRepository.findById(id);
         return optionalTask.orElse(null);
     }
 
-    public void addTask(Task task){
+    public void addTask(Task task) {
         taskRepository.save(task);
     }
 
-    public void addTaskOfClient(TaskDTO taskDTO,String email){
+    public void addTaskOfClient(TaskDTO taskDTO, String email) {
         Task task = new Task();
         Client client = clientService.findUserByEmail(email);
         task.setSubject(taskDTO.getSubject());
@@ -39,7 +40,7 @@ public class TaskService {
         addTask(task);
     }
 
-    public List<Task> getTasksOfClient(String email){
+    public List<Task> getTasksOfClient(String email) {
         Client client = clientService.findUserByEmail(email);
         List<Task> taskList = client.getTaskList();
         return taskList;

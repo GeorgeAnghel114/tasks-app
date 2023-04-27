@@ -33,7 +33,7 @@ public class TaskService {
         Client client = clientService.findUserByEmail(email);
         task.setSubject(taskDTO.getSubject());
         task.setStatus(taskDTO.getStatus());
-        task.setDate(taskDTO.getDate());
+        task.setDuedate(taskDTO.getDate());
         task.setClient(client);
         List<Task> taskList = client.getTaskList();
         taskList.add(task);
@@ -42,7 +42,10 @@ public class TaskService {
 
     public List<Task> getTasksOfClient(String email) {
         Client client = clientService.findUserByEmail(email);
-        List<Task> taskList = client.getTaskList();
+        Long clientId = client.getId();
+        System.out.println(clientId);
+
+        List<Task> taskList = taskRepository.findAllByTaskByDateDesc(clientId);
         return taskList;
     }
 

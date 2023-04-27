@@ -13,8 +13,9 @@ export class AuthenticationService {
     return this.http.post<Client>("http://localhost:8080/api/client/register",client)
   }
 
-  login(username: string): void {
+  login(username: string,token:string): void {
     localStorage.setItem('currentUser', username);
+    localStorage.setItem('token', token);
   }
 
   loginRequest(client: Client) {
@@ -25,8 +26,10 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser')
   }
 
-
   public get loggedIn(): boolean {
     return (localStorage.getItem('currentUser') !== null);
   }
+
+
+
 }

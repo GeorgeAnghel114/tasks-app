@@ -40,7 +40,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .authorizeRequests((request) -> request.antMatchers(
                                 "/api/tasks",
-                                "/api/task/get-tasks/*",
+                                "/api/task/get-tasks/**",
                                 "/api/task/add-task/*"
                         ).hasRole("USER")
                         .anyRequest().authenticated())

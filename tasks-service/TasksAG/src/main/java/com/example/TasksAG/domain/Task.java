@@ -26,7 +26,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String subject;
-    private Date date;
+    private Date duedate;
     private String status;
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)

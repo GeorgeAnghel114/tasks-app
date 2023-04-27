@@ -21,11 +21,13 @@ export class LoginFormComponent {
   login(): void {
     if (this.client.username != undefined && this.client.password != undefined) {
       this._auth.loginRequest(this.client).subscribe(response => {
-        this._auth.login(response.username);
+        this._auth.login(response.username,response.token);
 
         console.log(response)
         if (response) {
           this._router.navigate(['home'])
+          console.log(localStorage.getItem('value'))
+
         } else {
           alert("wrong username or password")
         }

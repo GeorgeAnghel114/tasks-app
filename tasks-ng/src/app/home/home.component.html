@@ -33,3 +33,25 @@
     </form>
   </div>
 </nav>
+<p>currentUser: {{localStorage.getItem('currentUser')}}</p>
+<p>currentUser: {{localStorage.getItem('token')}}</p>
+<br><br><br><br>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Status</th>
+    <th scope="col">Due Date</th>
+  </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let task of tasks">
+        <th scope="row">1</th>
+        <td>{{task.subject}}</td>
+        <td>{{task.status}}</td>
+        <td>{{task.duedate}}</td>
+      </tr>
+  </tbody>
+</table>
+a

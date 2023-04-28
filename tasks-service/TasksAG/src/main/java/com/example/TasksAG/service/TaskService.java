@@ -33,7 +33,7 @@ public class TaskService {
         Client client = clientService.findUserByEmail(email);
         task.setSubject(taskDTO.getSubject());
         task.setStatus(taskDTO.getStatus());
-        task.setDuedate(taskDTO.getDate());
+        task.setDuedate(taskDTO.getDuedate());
         task.setClient(client);
         List<Task> taskList = client.getTaskList();
         taskList.add(task);
@@ -48,4 +48,13 @@ public class TaskService {
         return taskRepository.findAllTasks();
     }
 
+    public void updateTask(TaskDTO taskDTO,Long id){
+        Task task = getTaskById(id);
+        task.setDuedate(taskDTO.getDuedate());
+        task.setStatus(taskDTO.getStatus());
+        task.setStatus(taskDTO.getStatus());
+        task.setClientId(taskDTO.getClientId());
+        task.setClientEmail(taskDTO.getClientName());
+        taskRepository.save(task);
+    }
 }

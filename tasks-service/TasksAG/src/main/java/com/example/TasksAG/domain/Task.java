@@ -37,9 +37,18 @@ public class Task {
         return client.getEmail();
     }
 
+    public void setClientEmail(String email){
+        client.getEmail();
+    }
+
     public Long getClientId() {
         return client.getId();
     }
+    public void setClientId(Long clientId){
+         client.getId();
+    }
+
+
 
 
 }

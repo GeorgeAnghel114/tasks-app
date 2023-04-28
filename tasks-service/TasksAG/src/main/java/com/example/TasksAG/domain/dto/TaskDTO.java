@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class TaskDTO {
     private Long taskId;
     private String subject;
-    private LocalDate date;
+    private LocalDate duedate;
     private String status;
     private String clientName;
     private Long clientId;

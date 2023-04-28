@@ -5,8 +5,9 @@ import {AllTask, Task} from "../task";
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
-  taskUrl = "http://localhost:8080/api/task/tasks";
+  taskUrl: string = "http://localhost:8080/api/task/tasks";
   allTaskUrl:string = "http://localhost:8080/api/task/all-tasks";
+  taskDetailUrl:string = "http://localhost:8080/api/task"
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,5 +25,10 @@ export class TaskService {
 
   getAllTasks():Observable<AllTask[]>{
     return this.http.get<AllTask[]>(this.allTaskUrl,this.httpOptions);
+  }
+
+  getTask(id:number):Observable<AllTask>{
+    const url:string = `${this.taskDetailUrl}/${id}`;
+    return this.http.get<AllTask>(url,this.httpOptions);
   }
 }

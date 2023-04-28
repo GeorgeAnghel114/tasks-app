@@ -4,7 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 public class TaskDTO {
     private Long taskId;
     private String subject;
-    private LocalDateTime date;
+    private LocalDate date;
     private String status;
     private String clientName;
     private Long clientId;

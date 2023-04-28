@@ -6,7 +6,6 @@ import com.example.TasksAG.domain.dto.TaskDTO;
 import com.example.TasksAG.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,9 +42,10 @@ public class TaskService {
 
     public List<Task> getTasksOfClient(String email) {
         Client client = clientService.findUserByEmail(email);
-        return client.getTaskList();
+        return taskRepository.findAllByTaskByDateDesc(client.getId());
     }
     public List<Task> getAllTasks() {
         return taskRepository.findAllTasks();
     }
+
 }

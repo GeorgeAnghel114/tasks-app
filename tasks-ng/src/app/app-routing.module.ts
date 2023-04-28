@@ -5,6 +5,7 @@ import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./_service/auth-guard.service";
 import {RegisterFormComponent} from "./register-form/register-form.component";
 import {AllTasksComponent} from "./all-tasks/all-tasks.component";
+import {TaskDetailComponent} from "./task-detail/task-detail.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:"all-tasks",
     component: AllTasksComponent,
+  },
+  {
+    path:"task-detail/:id",
+    component: TaskDetailComponent,
   }
 ];
 

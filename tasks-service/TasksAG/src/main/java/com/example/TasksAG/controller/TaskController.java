@@ -35,6 +35,11 @@ public class TaskController {
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
+    @GetMapping("/{id}")
+    public Task getTaskById(@PathVariable String id){
+        System.out.println(taskService.getTaskById(Long.valueOf(id)).toString());
+        return taskService.getTaskById(Long.valueOf(id));
+    }
 
     @PostMapping("/add-task/{email}")
     public void addClientTask(@PathVariable String email, @RequestBody TaskDTO taskDTO) {

@@ -39,15 +39,17 @@
       <th scope="col">Subject</th>
       <th scope="col">Status</th>
       <th scope="col">Due Date</th>
+      <th scope="col"></th>
 
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let task of tasks">
-      <th scope="row">{{task.id}}</th>
+      <th scope="row" >{{task.id}}</th>
       <td>{{task.subject}}</td>
       <td>{{task.status}}</td>
       <td>{{task.duedate}}</td>
+      <button class="btn" routerLink="/task-detail/{{task.id}}">Task details</button>
     </tr>
     </tbody>
   </table>

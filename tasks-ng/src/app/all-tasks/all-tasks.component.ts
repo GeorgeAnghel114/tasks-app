@@ -27,4 +27,5 @@ export class AllTasksComponent {
   getAllTasks():void{
     this.taskService.getAllTasks().subscribe(allTask=>this.allTask=allTask)
   }
+
 }

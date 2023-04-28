@@ -21,7 +21,7 @@ export class LoginFormComponent {
   login(): void {
     if (this.client.username != undefined && this.client.password != undefined) {
       this._auth.loginRequest(this.client).subscribe(response => {
-        this._auth.login(response.username,response.token);
+        this._auth.login(response.username, response.token);
 
         console.log(response)
         if (response) {
@@ -33,8 +33,8 @@ export class LoginFormComponent {
         }
       }, error => {
         console.log(error)
-        alert("Wrong credentials! Make an account!")
-        this._router.navigate(['register'])
+        alert("Wrong credentials, try again or make an account!")
+        // this._router.navigate(['register'])
 
       })
     }

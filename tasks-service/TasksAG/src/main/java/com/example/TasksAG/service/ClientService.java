@@ -27,7 +27,7 @@ public class ClientService implements UserDetailsService {
         Optional<Client> optionalClient = clientRepository.findById(id);
         return optionalClient.orElse(null);
     }
-
+    //todo can email be used - > verificare daca emailul exista deja in db
     public void addClient(ClientDTO clientDTO) {
         Client client = Client.builder()
                 .email(clientDTO.getEmail())

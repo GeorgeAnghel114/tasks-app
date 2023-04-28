@@ -8,13 +8,17 @@ import {HomeComponent} from './home/home.component';
 import {LoginFormComponent} from "./login-form/login-form.component";
 import {RegisterFormComponent} from "./register-form/register-form.component";
 import {HttpClientModule} from "@angular/common/http";
+import { AllTasksComponent } from './all-tasks/all-tasks.component';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    AllTasksComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,

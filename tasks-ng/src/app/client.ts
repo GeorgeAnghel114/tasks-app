@@ -5,15 +5,15 @@ export interface Client {
 
 }
 
-export interface LoggedUser{
-  token:string;
-  username:string;
-  userId:number;
+export interface LoggedUser {
+  token: string;
+  username: string;
+  userId: number;
 }
 
-export interface RegisterUser{
-  username:string;
-  email:string;
-  password:string;
+export interface RegisterUser {
+  username: string;
+  email: string;
+  password: string;
 
 }

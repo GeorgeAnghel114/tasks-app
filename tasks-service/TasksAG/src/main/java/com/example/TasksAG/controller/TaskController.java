@@ -28,11 +28,12 @@ public class TaskController {
 
     @GetMapping("/tasks/{email}")
     public List<Task> getClientTasks(@PathVariable String email) {
-        List<Task> taskList= taskService.getTasksOfClient(email);
-        for (Task task : taskList) {
-            System.out.println(task.getDuedate());
-        }
         return taskService.getTasksOfClient(email);
+    }
+
+    @GetMapping("/all-tasks")
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
     }
 
     @PostMapping("/add-task/{email}")

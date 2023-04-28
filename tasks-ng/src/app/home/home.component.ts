@@ -10,7 +10,6 @@ import {Task} from "../task";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // username:string = localStorage.getItem('value');
   tasks:Task[]=[]
 
   constructor(private taskService: TaskService,private router: Router, private authenticationService: AuthenticationService) {

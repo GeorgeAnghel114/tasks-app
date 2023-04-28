@@ -1,6 +1,5 @@
 <div class="container">
-
-  <h1>My Tasks</h1>
+  <h1>All Tasks</h1>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -31,6 +30,8 @@
       </ul>
     </div>
   </nav>
+  <!--  <p>currentUser: {{localStorage.getItem('currentUser')}}</p>-->
+  <!--  <p>currentUser: {{localStorage.getItem('token')}}</p>-->
   <br><br><br><br>
   <table class="table table-bordered">
     <thead>
@@ -39,15 +40,16 @@
       <th scope="col">Subject</th>
       <th scope="col">Status</th>
       <th scope="col">Due Date</th>
-
+      <th scope="col">Assigned to</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of allTask">
       <th scope="row">{{task.id}}</th>
       <td>{{task.subject}}</td>
       <td>{{task.status}}</td>
       <td>{{task.duedate}}</td>
+      <td>{{task.clientEmail}}</td>
     </tr>
     </tbody>
   </table>

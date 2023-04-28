@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Client} from "../client";
 
@@ -6,13 +6,13 @@ import {Client} from "../client";
   providedIn: 'root'
 })
 export class ClientService {
-  private clientUrl:string;
+  private clientUrl: string;
 
-  constructor(private http:HttpClient) {
-    this.clientUrl='http://localhost:8080/api/client/register';
+  constructor(private http: HttpClient) {
+    this.clientUrl = 'http://localhost:8080/api/client/register';
   }
 
-  public save(client: Client | undefined){
-    return this.http.post<Client>(this.clientUrl,client);
+  public save(client: Client | undefined) {
+    return this.http.post<Client>(this.clientUrl, client);
   }
 }

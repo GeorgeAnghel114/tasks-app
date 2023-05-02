@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/client")
@@ -43,6 +44,13 @@ public class ClientController {
         return clientService.getClientById(id);
     }
 
+    @GetMapping("/all-clients")
+    public List<Client> getAllClients(){
+        for (Client c : clientService.getAllClients()) {
+            System.out.println(c.getUsername());
+        }
+        return clientService.getAllClients();
+    }
     @PostMapping("/register")
     public ClientDTO register(@RequestBody ClientDTO clientDTO) {
         clientService.addClient(clientDTO);
@@ -63,8 +71,6 @@ public class ClientController {
         response.setUserId(client.getId());
         response.setUsername(client.getUsername());
         return ResponseEntity.ok(response);
-
-
     }
 
 }

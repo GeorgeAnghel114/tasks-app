@@ -30,8 +30,7 @@
       </ul>
     </div>
   </nav>
-  <!--  <p>currentUser: {{localStorage.getItem('currentUser')}}</p>-->
-  <!--  <p>currentUser: {{localStorage.getItem('token')}}</p>-->
+
   <br><br><br><br>
   <table class="table table-bordered">
     <thead>
@@ -51,6 +50,8 @@
       <td>{{task.status}}</td>
       <td>{{task.duedate}}</td>
       <td>{{task.clientEmail}}</td>
+
+
       <button class="btn" routerLink="/task-detail/{{task.id}}">Task details</button>
 
     </tr>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AllTask} from "../task";
 import {TaskService} from "../_service/task.service";
 import {Router} from "@angular/router";
@@ -9,7 +9,7 @@ import {AuthenticationService} from "../_service/authentication.service";
   templateUrl: './all-tasks.component.html',
   styleUrls: ['./all-tasks.component.css']
 })
-export class AllTasksComponent {
+export class AllTasksComponent implements OnInit{
   allTask:AllTask[]=[];
 
   constructor(private taskService: TaskService,
@@ -18,6 +18,7 @@ export class AllTasksComponent {
   }
   ngOnInit() {
     this.getAllTasks();
+
   }
 
   logout() {
@@ -26,6 +27,7 @@ export class AllTasksComponent {
   }
   getAllTasks():void{
     this.taskService.getAllTasks().subscribe(allTask=>this.allTask=allTask)
+
   }
 
 }

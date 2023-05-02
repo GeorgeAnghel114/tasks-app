@@ -50,7 +50,7 @@ public class TaskService {
 
     public void updateTask(TaskDTO taskDTO,Long id){
         Task task = getTaskById(id);
-        Client client = clientService.findUserByEmail(taskDTO.getClientName());
+        Client client = clientService.findUserByEmail(taskDTO.getClientEmail());
         task.setClient(client);
         task.setClientId(client.getId());
         task.setDuedate(taskDTO.getDuedate());

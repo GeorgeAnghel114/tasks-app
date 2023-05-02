@@ -49,6 +49,7 @@ public class TaskController {
 
     @PutMapping("/update-task/{id}")
     public void updateTask(@PathVariable String id, @RequestBody TaskDTO taskDTO) {
+        System.out.println("client name   "+taskDTO.getClientEmail());
         taskService.updateTask(taskDTO, Long.valueOf(id));
     }
 

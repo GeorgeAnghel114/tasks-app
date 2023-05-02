@@ -50,11 +50,12 @@ public class TaskService {
 
     public void updateTask(TaskDTO taskDTO,Long id){
         Task task = getTaskById(id);
+        Client client = clientService.findUserByEmail(taskDTO.getClientName());
+        task.setClient(client);
+        task.setClientId(client.getId());
         task.setDuedate(taskDTO.getDuedate());
         task.setStatus(taskDTO.getStatus());
-        task.setStatus(taskDTO.getStatus());
-        task.setClientId(taskDTO.getClientId());
-        task.setClientEmail(taskDTO.getClientName());
+        task.setSubject(taskDTO.getSubject());
         taskRepository.save(task);
     }
 }

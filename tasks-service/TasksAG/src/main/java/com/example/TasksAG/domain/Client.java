@@ -40,7 +40,7 @@ public class Client implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<String> roles = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.MERGE)
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Task> taskList;
 

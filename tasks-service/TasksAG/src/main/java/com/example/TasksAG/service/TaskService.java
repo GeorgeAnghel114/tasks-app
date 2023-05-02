@@ -35,6 +35,7 @@ public class TaskService {
         task.setStatus(taskDTO.getStatus());
         task.setDuedate(taskDTO.getDuedate());
         task.setClient(client);
+        task.setClientId(client.getId());
         List<Task> taskList = client.getTaskList();
         taskList.add(task);
         addTask(task);
@@ -56,6 +57,6 @@ public class TaskService {
         task.setDuedate(taskDTO.getDuedate());
         task.setStatus(taskDTO.getStatus());
         task.setSubject(taskDTO.getSubject());
-        taskRepository.save(task);
+        addTask(task);
     }
 }

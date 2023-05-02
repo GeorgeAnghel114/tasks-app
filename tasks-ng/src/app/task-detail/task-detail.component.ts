@@ -54,7 +54,6 @@ export class TaskDetailComponent implements OnInit {
   updateTask() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'))
     this.taskService.updateTask(this.allTask, id).subscribe();
-    this.onSubmit();
   }
 
   onSubmit() {

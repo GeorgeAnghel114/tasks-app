@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AllTask, Task} from "../task";
-import {AllTasksComponent} from "../all-tasks/all-tasks.component";
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
@@ -10,6 +9,7 @@ export class TaskService {
   allTaskUrl: string = "http://localhost:8080/api/task/all-tasks";
   taskDetailUrl: string = "http://localhost:8080/api/task"
   updateTaskUrl: string = "http://localhost:8080/api/task/update-task"
+  addNewTaskUrl: string = "http://localhost:8080/api/task/add-task"
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,5 +36,10 @@ export class TaskService {
   updateTask(allTask: AllTask | undefined, id: number): Observable<any> {
     const url: string = `${this.updateTaskUrl}/${id}`;
     return this.http.put(url,allTask, this.httpOptions);
+  }
+
+  addNewTask(allTask:AllTask | undefined):Observable<AllTask>{
+    const url: string = `${this.addNewTaskUrl}/${localStorage.getItem('currentUser')}`
+    return this.http.post<AllTask>(url,allTask,this.httpOptions);
   }
 }

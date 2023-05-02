@@ -1,14 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../_service/authentication.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {AllTask} from "../task";
 import {TaskService} from "../_service/task.service";
-import { ActivatedRoute } from '@angular/router';
 import {ClientService} from "../service/client-service";
 import {Client} from "../client";
 import {Observable, of} from "rxjs";
-import {AllTasksComponent} from "../all-tasks/all-tasks.component";
 
 
 @Component({
@@ -16,11 +14,11 @@ import {AllTasksComponent} from "../all-tasks/all-tasks.component";
   templateUrl: './task-detail.component.html',
   styleUrls: ['./task-detail.component.css']
 })
-export class TaskDetailComponent implements OnInit{
+export class TaskDetailComponent implements OnInit {
   // @Input() allTask?: AllTask;
-  allTask?:AllTask;
-  allClients:Observable<Client[]>=of([]);
-
+  allTask?: AllTask;
+  allClients: Observable<Client[]> = of([]);
+  newTask!: AllTask;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -30,9 +28,9 @@ export class TaskDetailComponent implements OnInit{
               private clientService: ClientService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getTask();
-    this.allClients=this.getAllClients();
+    this.allClients = this.getAllClients();
   }
 
   logout() {
@@ -40,22 +38,26 @@ export class TaskDetailComponent implements OnInit{
     this.router.navigate(['']);
   }
 
-  getTask(){
+  getTask() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'))
-    this.taskService.getTask(id).subscribe((allTask)=>this.allTask=allTask)
+    this.taskService.getTask(id).subscribe((allTask) => {
+      this.allTask = allTask;
+      this.newTask = {...allTask};
+    })
   }
-  getAllClients():Observable<Client[]>{
+
+  getAllClients(): Observable<Client[]> {
     return this.clientService
       .getAllClients()
   }
 
-  updateTask(){
+  updateTask() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'))
-    this.taskService.updateTask(this.allTask,id).subscribe();
+    this.taskService.updateTask(this.allTask, id).subscribe();
     this.onSubmit();
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.allTask);
   }
 }

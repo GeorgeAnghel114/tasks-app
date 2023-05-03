@@ -59,4 +59,10 @@ public class TaskService {
         task.setSubject(taskDTO.getSubject());
         addTask(task);
     }
+
+    public List<Task> getSearchParams(TaskDTO taskDTO){
+        return taskRepository.findBySearch(taskDTO.getSubject(),
+                taskDTO.getDuedate(),
+                taskDTO.getClientEmail());
+    }
 }

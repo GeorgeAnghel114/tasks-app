@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { AllTasksComponent } from './all-tasks/all-tasks.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NewTaskComponent } from './new-task/new-task.component';
     RegisterFormComponent,
     AllTasksComponent,
     TaskDetailComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

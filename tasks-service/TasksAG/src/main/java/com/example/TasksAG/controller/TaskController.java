@@ -53,4 +53,8 @@ public class TaskController {
         taskService.updateTask(taskDTO, Long.valueOf(id));
     }
 
+    @PostMapping("/search")
+    public List<Task> searchParams(@RequestBody TaskDTO taskDTO){
+        return taskService.getSearchParams(taskDTO);
+    }
 }

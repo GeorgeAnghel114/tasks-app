@@ -45,7 +45,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/api/task/all-tasks",
                                 "/api/task/update-task",
                                 "/api/task/update-task/*",
-                                "/api/client/all-clients"
+                                "/api/client/all-clients",
+                                "/api/task/search"
 
                         ).hasRole("USER")
                         .anyRequest().authenticated())

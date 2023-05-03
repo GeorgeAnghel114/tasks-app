@@ -21,6 +21,7 @@ export class LoginFormComponent {
   login(): void {
     if (this.client.username != undefined && this.client.password != undefined) {
       this._auth.loginRequest(this.client).subscribe(response => {
+        //todo rename login - functia care salveaza in local storage
         this._auth.login(response.username, response.token);
 
         console.log(response)

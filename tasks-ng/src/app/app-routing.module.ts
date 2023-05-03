@@ -28,19 +28,27 @@ const routes: Routes = [
   {
     path: '',
     component: LoginFormComponent,
+    canActivate: [AuthGuard],
+
 
   },
   {
     path:"all-tasks",
     component: AllTasksComponent,
+    canActivate: [AuthGuard],
+
   },
   {
     path:"task-detail/:id",
     component: TaskDetailComponent,
+    canActivate: [AuthGuard],
+
   },
   {
     path:"new-task",
     component: NewTaskComponent,
+    canActivate: [AuthGuard],
+
   }
 ];
 

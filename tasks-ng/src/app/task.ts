@@ -7,12 +7,12 @@ export interface Task {
 }
 
 export interface AllTask{
-  id:number;
-  subject: string;
-  status: string;
-  duedate: string;
-  clientId:number;
-  clientEmail:string;
+  id?:number;
+  subject?: string;
+  status?: string;
+  duedate?: string;
+  clientId?:number;
+  clientEmail?:string;
 }
 
 export interface UpdatedTask {

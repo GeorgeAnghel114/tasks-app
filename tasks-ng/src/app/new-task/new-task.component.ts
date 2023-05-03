@@ -14,7 +14,11 @@ import {Client} from "../client";
 })
 export class NewTaskComponent implements OnInit{
   allClients: Observable<Client[]> = of([]);
-  allTask!: AllTask;
+  allTask?: AllTask={};
+  clientEmail:string | undefined;
+  subject:string | undefined;
+  status:string | undefined;
+  duedate:string | undefined;
   constructor(private authenticationService: AuthenticationService,
               private clientService: ClientService,
               private router: Router,
@@ -36,6 +40,10 @@ export class NewTaskComponent implements OnInit{
       .getAllClients()
   }
   addNewTask(){
+    this.allTask!.clientEmail=this.clientEmail;
+    this.allTask!.subject=this.subject;
+    this.allTask!.status=this.status;
+    this.allTask!.duedate=this.duedate;
     this.taskService.addNewTask(this.allTask).subscribe();
   }
 }

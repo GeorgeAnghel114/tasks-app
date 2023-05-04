@@ -6,6 +6,8 @@ import {Router} from "@angular/router";
 import {TaskService} from "../_service/task.service";
 import {Observable, of} from "rxjs";
 import {Client} from "../client";
+import { FormGroup,NgForm} from "@angular/forms";
+
 
 @Component({
   selector: 'app-new-task',
@@ -26,9 +28,9 @@ export class NewTaskComponent implements OnInit{
 
   }
 
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['']);
+
+  resetForm(form: FormGroup | NgForm) {
+    form.reset();
   }
 
   ngOnInit(): void {

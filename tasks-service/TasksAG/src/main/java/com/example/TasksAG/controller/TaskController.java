@@ -1,6 +1,7 @@
 package com.example.TasksAG.controller;
 
 import com.example.TasksAG.domain.Task;
+import com.example.TasksAG.domain.dto.SearchDTO;
 import com.example.TasksAG.domain.dto.TaskDTO;
 import com.example.TasksAG.service.ClientService;
 import com.example.TasksAG.service.TaskService;
@@ -54,7 +55,7 @@ public class TaskController {
     }
 
     @PostMapping("/search")
-    public List<Task> searchParams(@RequestBody TaskDTO taskDTO){
-        return taskService.getSearchParams(taskDTO);
+    public List<Task> searchParams(@RequestBody SearchDTO searchDTO){
+        return taskService.getSearchParams(searchDTO);
     }
 }

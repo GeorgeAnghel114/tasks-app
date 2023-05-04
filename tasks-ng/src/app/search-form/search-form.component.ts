@@ -4,7 +4,7 @@ import {AllTask, SearchForm} from "../task";
 import {TaskService} from "../_service/task.service";
 import {Client} from "../client";
 import {ClientService} from "../service/client-service";
-import { FormGroup,NgForm} from "@angular/forms";
+import {FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-search-form',
@@ -12,13 +12,12 @@ import { FormGroup,NgForm} from "@angular/forms";
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
-  searchClient?: string=undefined;
-  searchSubject?: string=undefined;
-  searchDuedate?: string=undefined;
-  searchForm:SearchForm={};
-  clients?:Observable<Client[]>
-  allTask?:AllTask[]=[];
-
+  searchId = null;
+  searchSubject = null;
+  searchDuedate = null;
+  // searchForm: SearchForm = {};
+  clients?: Observable<Client[]>
+  allTask?: AllTask[] = [];
 
 
   constructor(private taskService: TaskService,
@@ -34,13 +33,20 @@ export class SearchFormComponent implements OnInit {
     this.clients = this.clientService.getAllClients();
   }
 
-  searchTasks(){
-    this.searchForm.clientEmail=this.searchClient;
-    this.searchForm.subject=this.searchSubject;
-    this.searchForm.duedate=this.searchDuedate;
-    this.taskService.searchTasks(this.searchForm).subscribe((res)=>{
-      this.allTask=res
-      if(this.allTask.length===0){
+  searchTasks() {
+    const params: SearchForm = {
+      clientId:this.searchId!,
+      subject:this.searchSubject!,
+      duedate:this.searchDuedate!
+    }
+    // this.searchForm.clientId = this.searchId;
+    // this.searchForm.subject = this.searchSubject;
+    // this.searchForm.duedate = this.searchDuedate;
+    console.log(params)
+
+    this.taskService.searchTasks(params).subscribe((res) => {
+      this.allTask = res
+      if (this.allTask.length === 0) {
         alert("0 results for this searching criteria!")
       }
     });

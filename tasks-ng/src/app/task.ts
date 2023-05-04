@@ -16,7 +16,7 @@ export interface AllTask{
 }
 
 export interface SearchForm {
-  clientEmail?:string;
-  subject?:string;
-  duedate?:string;
+  clientId:number | null;
+  subject:string | null;
+  duedate:string | null;
 }

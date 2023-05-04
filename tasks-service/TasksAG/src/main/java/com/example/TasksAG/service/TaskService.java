@@ -2,6 +2,7 @@ package com.example.TasksAG.service;
 
 import com.example.TasksAG.domain.Client;
 import com.example.TasksAG.domain.Task;
+import com.example.TasksAG.domain.dto.SearchDTO;
 import com.example.TasksAG.domain.dto.TaskDTO;
 import com.example.TasksAG.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -60,9 +61,10 @@ public class TaskService {
         addTask(task);
     }
 
-    public List<Task> getSearchParams(TaskDTO taskDTO){
-        return taskRepository.findBySearch(taskDTO.getSubject(),
-                taskDTO.getDuedate(),
-                taskDTO.getClientEmail());
+    public List<Task> getSearchParams(SearchDTO searchDTO){
+        return taskRepository.findBySearch(
+                searchDTO.getSubject(),
+                searchDTO.getDuedate(),
+                searchDTO.getClientId());
     }
 }

@@ -44,11 +44,11 @@ export class TaskService {
     return this.http.post<AllTask>(url,allTask,this.httpOptions);
   }
 
-  searchTasks(searchForm:SearchForm | undefined):Observable<SearchForm[]>{
+  searchTasks(searchForm:SearchForm | undefined):Observable<AllTask[]>{
     const url: string = this.searchFormUrl;
     if(!searchForm){
       return of([]);
     }
-    return this.http.post<SearchForm[]>(url,searchForm,this.httpOptions)
+    return this.http.post<AllTask[]>(url,searchForm,this.httpOptions)
   }
 }

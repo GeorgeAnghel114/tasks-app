@@ -7,6 +7,7 @@ import {RegisterFormComponent} from "./register-form/register-form.component";
 import {AllTasksComponent} from "./all-tasks/all-tasks.component";
 import {TaskDetailComponent} from "./task-detail/task-detail.component";
 import {NewTaskComponent} from "./new-task/new-task.component";
+import {SearchFormComponent} from "./search-form/search-form.component";
 
 const routes: Routes = [
   {
@@ -47,6 +48,12 @@ const routes: Routes = [
   {
     path:"new-task",
     component: NewTaskComponent,
+    canActivate: [AuthGuard],
+
+  },
+  {
+    path:'search-form',
+    component:SearchFormComponent,
     canActivate: [AuthGuard],
 
   }

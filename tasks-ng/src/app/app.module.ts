@@ -12,6 +12,7 @@ import { AllTasksComponent } from './all-tasks/all-tasks.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AllTasksComponent,
     TaskDetailComponent,
     NewTaskComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchFormComponent
   ],
   imports: [
     BrowserModule,

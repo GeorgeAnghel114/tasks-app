@@ -15,11 +15,8 @@ export interface AllTask{
   clientEmail?:string;
 }
 
-export interface UpdatedTask {
-  id:number;
-  subject: string;
-  status: string;
-  duedate: string;
-  clientId:number;
-  clientName:string;
+export interface SearchForm {
+  clientEmail?:string;
+  subject?:string;
+  duedate?:string;
 }

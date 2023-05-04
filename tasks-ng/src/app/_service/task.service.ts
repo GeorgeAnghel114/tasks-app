@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {AllTask, Task} from "../task";
+import {Observable, of} from "rxjs";
+import {AllTask, SearchForm, Task} from "../task";
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
   taskUrl: string = "http://localhost:8080/api/task/tasks";
   allTaskUrl: string = "http://localhost:8080/api/task/all-tasks";
-  taskDetailUrl: string = "http://localhost:8080/api/task"
-  updateTaskUrl: string = "http://localhost:8080/api/task/update-task"
-  addNewTaskUrl: string = "http://localhost:8080/api/task/add-task"
+  taskDetailUrl: string = "http://localhost:8080/api/task";
+  updateTaskUrl: string = "http://localhost:8080/api/task/update-task";
+  addNewTaskUrl: string = "http://localhost:8080/api/task/add-task";
+  searchFormUrl: string = "http://localhost:8080/api/task/search";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -41,5 +42,13 @@ export class TaskService {
   addNewTask(allTask:AllTask | undefined):Observable<AllTask>{
     const url: string = `${this.addNewTaskUrl}/${localStorage.getItem('currentUser')}`
     return this.http.post<AllTask>(url,allTask,this.httpOptions);
+  }
+
+  searchTasks(searchForm:SearchForm | undefined):Observable<SearchForm[]>{
+    const url: string = this.searchFormUrl;
+    if(!searchForm){
+      return of([]);
+    }
+    return this.http.post<SearchForm[]>(url,searchForm,this.httpOptions)
   }
 }

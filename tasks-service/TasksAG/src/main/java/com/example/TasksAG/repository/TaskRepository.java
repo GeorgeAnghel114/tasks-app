@@ -19,7 +19,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             nativeQuery = true)
     List<Task> findAllTasks();
 
-    @Query(value = "SELECT t FROM Task t WHERE (:subject IS NULL OR LOWER(t.subject) like LOWER(concat('%',:subject,'%'))) " +
+    @Query(value = "SELECT t FROM Task t WHERE (:subject IS NULL OR LOWER(t.subject) like LOWER(concat('%', cast(:subject as string ),'%'))) " +
             "AND (cast(:duedate as date) IS NULL OR t.duedate > :duedate)" +
             "AND (:clientId is null or t.client.id=:clientId )")
     List<Task> findBySearch(@Param("subject") String subject,

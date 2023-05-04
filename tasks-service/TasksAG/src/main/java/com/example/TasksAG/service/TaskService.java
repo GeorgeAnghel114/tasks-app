@@ -46,11 +46,12 @@ public class TaskService {
         Client client = clientService.findUserByEmail(email);
         return taskRepository.findAllByTaskByDateDesc(client.getId());
     }
+
     public List<Task> getAllTasks() {
         return taskRepository.findAllTasks();
     }
 
-    public void updateTask(TaskDTO taskDTO,Long id){
+    public void updateTask(TaskDTO taskDTO, Long id) {
         Task task = getTaskById(id);
         Client client = clientService.findUserByEmail(taskDTO.getClientEmail());
         task.setClient(client);
@@ -61,7 +62,7 @@ public class TaskService {
         addTask(task);
     }
 
-    public List<Task> getSearchParams(SearchDTO searchDTO){
+    public List<Task> getSearchParams(SearchDTO searchDTO) {
         return taskRepository.findBySearch(
                 searchDTO.getSubject(),
                 searchDTO.getDuedate(),

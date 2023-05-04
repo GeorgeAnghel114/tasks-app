@@ -2,7 +2,7 @@
   <div class="card my-5">
     <div class="card-body">
       <h2>Login</h2>
-      <form (ngSubmit)="login()" #userForm="ngForm">
+      <form (ngSubmit)="!userForm.invalid && login()" #userForm="ngForm">
         <div class="form-group">
           <label for="username">Email</label>
           <input type="text" [(ngModel)]="client.username"
@@ -11,8 +11,13 @@
                  name="username"
                  placeholder="Enter your email address"
                  required #username="ngModel">
+          <div *ngIf="username.touched && !username.valid"
+               class="alert alert-danger">
+
+            Email is required
+          </div>
+
         </div>
-        <div [hidden]="!username.pristine" class="alert alert-danger">User name is required</div>
 
         <div class="form-group">
           <label for="password">Password</label>
@@ -22,7 +27,12 @@
                  name="password"
                  placeholder="Enter your password"
                  required #password="ngModel">
-          <div [hidden]="!password.pristine" class="alert alert-danger">Password is required</div>
+          <div *ngIf="password.touched && !password.valid"
+               class="alert alert-danger">
+
+            Password is required
+          </div>
+
         </div>
         <button type="submit" [disabled]="!userForm.form.valid"
                 class="btn btn-info">Login

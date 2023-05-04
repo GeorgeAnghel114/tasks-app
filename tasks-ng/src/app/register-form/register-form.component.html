@@ -2,7 +2,7 @@
 <div class="card my-5">
   <div class="card-body">
     <h2>Register</h2>
-    <form (ngSubmit)="register()" #userForm="ngForm">
+    <form (ngSubmit)="!userForm.invalid && register()" #userForm="ngForm">
       <div class="form-group">
         <label for="username">User name</label>
         <input type="text" [(ngModel)]="client.username"
@@ -10,10 +10,12 @@
                id="username"
                name="username"
                placeholder="Enter your user name"
-
                required #username="ngModel">
+        <div *ngIf="username.touched && !username.valid"
+             class="alert alert-danger">
+          Username is required
+        </div>
       </div>
-      <div [hidden]="!username.pristine" class="alert alert-danger">User name is required</div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" [(ngModel)]="client.email"
@@ -22,8 +24,11 @@
                name="email"
                placeholder="Enter your email address"
                required #email="ngModel">
-        <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div>
-      </div>
+        <div *ngIf="email.touched && !email.valid"
+             class="alert alert-danger">
+
+          Email is required
+        </div>      </div>
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" [(ngModel)]="client.password"
@@ -33,8 +38,11 @@
                placeholder="Enter your password"
                minlength="6"
                required #password="ngModel">
-        <div [hidden]="!password.pristine" class="alert alert-danger">Password is required</div>
-      </div>
+        <div *ngIf="password.touched && !password.valid"
+             class="alert alert-danger">
+
+          Email is required
+        </div>      </div>
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>

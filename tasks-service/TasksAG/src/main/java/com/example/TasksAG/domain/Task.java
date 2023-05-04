@@ -28,8 +28,7 @@ public class Task {
     private String subject;
     private LocalDate duedate;
     private String status;
-    @JsonIgnore
-
+    @JsonIgnore+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Client client;
 

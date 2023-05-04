@@ -31,7 +31,7 @@ public class TaskService {
 
     public void addTaskOfClient(TaskDTO taskDTO, String email) {
         Task task = new Task();
-        Client client = clientService.findUserByEmail(email);
+        Client client = clientService.findUserByEmail(taskDTO.getClientEmail());
         task.setSubject(taskDTO.getSubject());
         task.setStatus(taskDTO.getStatus());
         task.setDuedate(taskDTO.getDuedate());

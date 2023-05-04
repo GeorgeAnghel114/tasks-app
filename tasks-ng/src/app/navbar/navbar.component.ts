@@ -17,4 +17,6 @@ export class NavbarComponent {
     this.authenticationService.logout();
     this.router.navigate(['']);
   }
+
+  protected readonly localStorage = localStorage;
 }

@@ -33,9 +33,9 @@ export class TaskDetailComponent implements OnInit {
     this.allClients = this.getAllClients();
   }
 
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['']);
+
+  redirect() {
+    this.router.navigate(['home'])
   }
 
   getTask() {
@@ -56,7 +56,4 @@ export class TaskDetailComponent implements OnInit {
     this.taskService.updateTask(this.allTask, id).subscribe();
   }
 
-  onSubmit() {
-    console.log(this.allTask);
-  }
 }

@@ -40,7 +40,6 @@
                required #password="ngModel">
         <div *ngIf="password.touched && !password.valid"
              class="alert alert-danger">
-
           Email is required
         </div>      </div>
       <button type="submit" [disabled]="!userForm.form.valid"

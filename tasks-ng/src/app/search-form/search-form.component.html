@@ -34,18 +34,14 @@
              name="date"
              placeholder="Date"
              [(ngModel)]="searchDuedate"
-
       >
     </div>
     <div class="d-flex justify-content-end">
       <button type="button" class="btn btn-danger  mr-auto"(click)="resetForm(myForm)">Reset Form</button>
-
       <button type="submit" class="btn btn-primary">Search</button>
     </div>
-
   </form>
   <br>
-
   <br><br>
   <hr>
   <div *ngIf="allTask?.length; else NoTasks">
@@ -67,22 +63,14 @@
         <td>{{task.status}}</td>
         <td>{{task.duedate}}</td>
         <td>{{task.clientEmail}}</td>
-
-
         <button class="btn" routerLink="/task-detail/{{task.id}}">Task details</button>
-
       </tr>
       </tbody>
     </table>
-
   </div>
-
   <ng-template #NoTasks>
-
     <p>No Tasks</p>
   </ng-template>
-
-
 </div>
 
 

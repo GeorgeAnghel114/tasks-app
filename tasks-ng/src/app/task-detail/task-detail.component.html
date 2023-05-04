@@ -1,8 +1,7 @@
 <div class="container">
-
- <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
   <div *ngIf="allTask">
-    <form  #myForm="ngForm" (ngSubmit)="updateTask()">
+    <form #myForm="ngForm" (ngSubmit)="updateTask()">
       <div class="form-row">
         <div class="form-group col-md-6">
           <h3>Assigned to: {{newTask.clientEmail}}</h3>
@@ -11,7 +10,7 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="name">Reassign to:</label>
-          <select id="name" name="name" [(ngModel)]="allTask.clientEmail"  class="form-control">{{allTask.clientEmail}}
+          <select id="name" name="name" [(ngModel)]="allTask.clientEmail" class="form-control">{{allTask.clientEmail}}
             <option
               *ngFor="let client of (allClients | async)"
               [value]="client.username">
@@ -21,7 +20,13 @@
       </div>
       <div class="form-group">
         <label for="subject">Subject</label>
-        <input type="text" class="form-control" id="subject" name="subject" [(ngModel)]="allTask.subject" placeholder="{{allTask.subject}}">
+        <input type="text"
+               class="form-control"
+               id="subject" name="subject"
+               [(ngModel)]="allTask.subject"
+               placeholder="{{allTask.subject}}"
+               maxlength="100"
+        >
       </div>
       <div class="form-group">
         <label for="duedate">Due date: {{newTask.duedate}}</label>
@@ -43,7 +48,10 @@
           </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!myForm.form.valid">Save</button>
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary mr-auto" [disabled]="!myForm.form.valid">Save</button>
+        <button type="button" class="btn btn-danger" (click)="redirect()">Go to homepage</button>
+      </div>
     </form>
   </div>
 </div>

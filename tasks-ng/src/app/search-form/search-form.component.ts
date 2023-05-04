@@ -35,15 +35,10 @@ export class SearchFormComponent implements OnInit {
 
   searchTasks() {
     const params: SearchForm = {
-      clientId:this.searchId!,
-      subject:this.searchSubject!,
-      duedate:this.searchDuedate!
+      clientId: this.searchId!,
+      subject: this.searchSubject!,
+      duedate: this.searchDuedate!
     }
-    // this.searchForm.clientId = this.searchId;
-    // this.searchForm.subject = this.searchSubject;
-    // this.searchForm.duedate = this.searchDuedate;
-    console.log(params)
-
     this.taskService.searchTasks(params).subscribe((res) => {
       this.allTask = res
       if (this.allTask.length === 0) {

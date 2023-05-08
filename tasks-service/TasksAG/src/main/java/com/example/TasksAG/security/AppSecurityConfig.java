@@ -41,12 +41,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests((request) -> request.antMatchers(
                                     "/api/task/**",
                                 "/api/task/get-tasks/**",
-                                "/api/task/add-task/*",
+                                "/api/task/add-task",
                                 "/api/task/all-tasks",
                                 "/api/task/update-task",
                                 "/api/task/update-task/*",
                                 "/api/client/all-clients",
-                                "/api/task/search"
+                                "/api/task/search",
+                                "/delete-task/*"
 
                         ).hasRole("USER")
                         .anyRequest().authenticated())
@@ -60,4 +61,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
+
 }

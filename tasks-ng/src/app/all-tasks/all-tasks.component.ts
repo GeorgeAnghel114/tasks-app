@@ -26,7 +26,10 @@ export class AllTasksComponent implements OnInit{
     this.router.navigate(['']);
   }
   getAllTasks():void{
-    this.taskService.getAllTasks().subscribe(allTask=>this.allTask=allTask)
+    this.taskService.
+    getAllTasks()
+      .subscribe(
+        allTask=>this.allTask=allTask)
 
   }
 

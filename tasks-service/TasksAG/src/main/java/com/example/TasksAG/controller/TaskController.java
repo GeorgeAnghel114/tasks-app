@@ -6,12 +6,14 @@ import com.example.TasksAG.domain.dto.TaskDTO;
 import com.example.TasksAG.service.ClientService;
 import com.example.TasksAG.service.TaskService;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -43,9 +45,9 @@ public class TaskController {
         return taskService.getTaskById(Long.valueOf(id));
     }
 
-    @PostMapping("/add-task/{email}")
-    public void addClientTask(@PathVariable String email, @RequestBody TaskDTO taskDTO) {
-        taskService.addTaskOfClient(taskDTO, email);
+    @PostMapping("/add-task")
+    public void addClientTask(@RequestBody TaskDTO taskDTO) {
+        taskService.addTaskOfClient(taskDTO);
     }
 
     @PutMapping("/update-task/{id}")
@@ -57,5 +59,10 @@ public class TaskController {
     @PostMapping("/search")
     public List<Task> searchParams(@RequestBody SearchDTO searchDTO){
         return taskService.getSearchParams(searchDTO);
+    }
+
+    @DeleteMapping("/delete-task/{id}")
+    public void deleteTask(@PathVariable Long id){
+        taskService.deleteTask(id);
     }
 }

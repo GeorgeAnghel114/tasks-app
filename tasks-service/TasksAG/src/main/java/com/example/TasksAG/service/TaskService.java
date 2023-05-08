@@ -29,12 +29,13 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public void addTaskOfClient(TaskDTO taskDTO, String email) {
+    public void addTaskOfClient(TaskDTO taskDTO) {
         Task task = new Task();
         Client client = clientService.findUserByEmail(taskDTO.getClientEmail());
         task.setSubject(taskDTO.getSubject());
         task.setStatus(taskDTO.getStatus());
         task.setDuedate(taskDTO.getDuedate());
+        task.setDeleted(false);
         task.setClient(client);
         task.setClientId(client.getId());
         List<Task> taskList = client.getTaskList();
@@ -67,5 +68,14 @@ public class TaskService {
                 searchDTO.getSubject(),
                 searchDTO.getDuedate(),
                 searchDTO.getClientId());
+    }
+
+    public void deleteTask(Long id){
+        Task task = getTaskById(id);
+        System.out.println("ajunge");
+        task.setDeleted(true);
+        System.out.println("setez deleted cu true");
+        taskRepository.save(task);
+        System.out.println("s-a salvat");
     }
 }

@@ -28,7 +28,7 @@ public class ClientService implements UserDetailsService {
         return optionalClient.orElse(null);
     }
 
-    public List<Client> getAllClients(){
+    public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
@@ -40,11 +40,6 @@ public class ClientService implements UserDetailsService {
                 .password(passwordEncoder.encode(clientDTO.getPassword()))
                 .roles(List.of("ROLE_USER"))
                 .build();
-//        Client client = new Client();
-//        client.setPassword(passwordEncoder.encode(clientDTO.getPassword()));
-//        client.setUsername(clientDTO.getUsername());
-//        client.setEmail(clientDTO.getEmail());
-//        client.getRoles().add("ROLE_USER");
         clientRepository.save(client);
     }
 

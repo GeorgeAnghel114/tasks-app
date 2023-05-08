@@ -76,4 +76,5 @@ public class Client implements UserDetails {
     public Long getId() {
         return id;
     }
+
 }

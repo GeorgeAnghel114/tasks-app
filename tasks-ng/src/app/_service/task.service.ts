@@ -40,7 +40,7 @@ export class TaskService {
   }
 
   addNewTask(allTask:AllTask | undefined):Observable<AllTask>{
-    const url: string = `${this.addNewTaskUrl}/${localStorage.getItem('currentUser')}`
+    const url: string = `${this.addNewTaskUrl}`
     return this.http.post<AllTask>(url,allTask,this.httpOptions);
   }
 

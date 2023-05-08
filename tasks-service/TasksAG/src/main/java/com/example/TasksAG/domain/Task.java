@@ -2,6 +2,7 @@ package com.example.TasksAG.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Task {
 
     @Id
@@ -28,9 +30,10 @@ public class Task {
     private String subject;
     private LocalDate duedate;
     private String status;
-    @JsonIgnore+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Client client;
+    private boolean isDeleted;
 
 
     public String getClientEmail() {

@@ -5,9 +5,7 @@ public class AuthenticationRequest {
     private String password;
 
     public AuthenticationRequest() {
-
     }
-
     public String getUsername() {
         return username;
     }

@@ -11,15 +11,15 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    @Query(value = "SELECT * from task where client_id = :id  order by duedate desc",
+    @Query(value = "SELECT * from task where client_id = :id and is_deleted=false order by duedate desc",
             nativeQuery = true)
     List<Task> findAllByTaskByDateDesc(Long id);
 
-    @Query(value = "select * from task left join client on task.client_id=client.id order by  duedate desc",
+    @Query(value = "select * from task left join client on task.client_id=client.id where is_deleted=false order by  duedate desc",
             nativeQuery = true)
     List<Task> findAllTasks();
 
-    @Query(value = "SELECT t FROM Task t WHERE (:subject IS NULL OR LOWER(t.subject) like LOWER(concat('%', cast(:subject as string ),'%'))) " +
+    @Query(value = "SELECT t FROM Task t WHERE  t.isDeleted=false and (:subject IS NULL OR LOWER(t.subject) like LOWER(concat('%', cast(:subject as string ),'%'))) " +
             "AND (cast(:duedate as date) IS NULL OR t.duedate > :duedate)" +
             "AND (:clientId is null or t.client.id=:clientId )")
     List<Task> findBySearch(@Param("subject") String subject,

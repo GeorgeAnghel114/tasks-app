@@ -37,24 +37,24 @@ export class TaskService {
 
   updateTask(allTask: AllTask | undefined, id: number): Observable<any> {
     const url: string = `${this.updateTaskUrl}/${id}`;
-    return this.http.put(url,allTask, this.httpOptions);
+    return this.http.put(url, allTask, this.httpOptions);
   }
 
-  addNewTask(allTask:AllTask | undefined):Observable<AllTask>{
+  addNewTask(allTask: AllTask | undefined): Observable<AllTask> {
     const url: string = `${this.addNewTaskUrl}`
-    return this.http.post<AllTask>(url,allTask,this.httpOptions);
+    return this.http.post<AllTask>(url, allTask, this.httpOptions);
   }
 
-  searchTasks(searchForm:SearchForm | undefined):Observable<AllTask[]>{
+  searchTasks(searchForm: SearchForm | undefined): Observable<AllTask[]> {
     const url: string = this.searchFormUrl;
-    if(!searchForm){
+    if (!searchForm) {
       return of([]);
     }
-    return this.http.post<AllTask[]>(url,searchForm,this.httpOptions)
+    return this.http.post<AllTask[]>(url, searchForm, this.httpOptions)
   }
 
-  deleteTaskById(id:number):Observable<AllTask>{
+  deleteTaskById(id: number): Observable<AllTask> {
     const url: string = this.deleteTask
-     return this.http.delete<any>(`${url}`+`${id}`,this.httpOptions);
+    return this.http.delete<any>(`${url}` + `${id}`, this.httpOptions);
   }
 }

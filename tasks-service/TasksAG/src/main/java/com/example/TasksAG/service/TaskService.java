@@ -72,11 +72,7 @@ public class TaskService {
 
     public Task deleteTask(Long id){
         Task task = getTaskById(id);
-        System.out.println("ajunge");
         task.setDeleted(true);
-        System.out.println("setez deleted cu true");
-        System.out.println("s-a salvat");
-
         return taskRepository.save(task);
     }
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -52,18 +51,17 @@ public class TaskController {
 
     @PutMapping("/update-task/{id}")
     public void updateTask(@PathVariable String id, @RequestBody TaskDTO taskDTO) {
-        System.out.println("client name   "+taskDTO.getClientEmail());
+        System.out.println("client name   " + taskDTO.getClientEmail());
         taskService.updateTask(taskDTO, Long.valueOf(id));
     }
 
     @PostMapping("/search")
-    public List<Task> searchParams(@RequestBody SearchDTO searchDTO){
+    public List<Task> searchParams(@RequestBody SearchDTO searchDTO) {
         return taskService.getSearchParams(searchDTO);
     }
 
     @DeleteMapping("/delete-task/{id}")
-    public Task deleteTask(@PathVariable Long id){
-        System.out.println("intra in controller");
+    public Task deleteTask(@PathVariable Long id) {
         return taskService.deleteTask(id);
     }
 }

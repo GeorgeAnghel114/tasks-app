@@ -58,7 +58,7 @@ export class TaskDetailComponent implements OnInit {
     this.redirect();
   }
 
-  deleteTask(){
+  deleteTask() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'))
     console.log(id)
     this.taskService.deleteTaskById(id).subscribe()

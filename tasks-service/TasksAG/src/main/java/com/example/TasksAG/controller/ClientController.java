@@ -45,12 +45,10 @@ public class ClientController {
     }
 
     @GetMapping("/all-clients")
-    public List<Client> getAllClients(){
-        for (Client c : clientService.getAllClients()) {
-            System.out.println(c.getUsername());
-        }
+    public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
+
     @PostMapping("/register")
     public ClientDTO register(@RequestBody ClientDTO clientDTO) {
         clientService.addClient(clientDTO);

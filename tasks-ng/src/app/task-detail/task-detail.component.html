@@ -50,6 +50,8 @@
       </div>
       <div class="d-flex justify-content-end">
         <button type="submit" class="btn btn-primary mr-auto" [disabled]="!myForm.form.valid">Save</button>
+        <button type="submit" class="btn btn-danger" (click)="deleteTask()">Delete task</button>
+
         <button type="button" class="btn btn-danger" (click)="redirect()">Go to homepage</button>
       </div>
     </form>

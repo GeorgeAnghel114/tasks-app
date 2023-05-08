@@ -11,6 +11,7 @@ export class TaskService {
   updateTaskUrl: string = "http://localhost:8080/api/task/update-task";
   addNewTaskUrl: string = "http://localhost:8080/api/task/add-task";
   searchFormUrl: string = "http://localhost:8080/api/task/search";
+  deleteTask: string = "http://localhost:8080/api/task/delete-task/";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -50,5 +51,10 @@ export class TaskService {
       return of([]);
     }
     return this.http.post<AllTask[]>(url,searchForm,this.httpOptions)
+  }
+
+  deleteTaskById(id:number):Observable<AllTask>{
+    const url: string = this.deleteTask
+     return this.http.delete<any>(`${url}`+`${id}`,this.httpOptions);
   }
 }

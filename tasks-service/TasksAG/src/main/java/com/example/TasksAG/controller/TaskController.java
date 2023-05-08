@@ -62,7 +62,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/delete-task/{id}")
-    public void deleteTask(@PathVariable Long id){
-        taskService.deleteTask(id);
+    public Task deleteTask(@PathVariable Long id){
+        System.out.println("intra in controller");
+        return taskService.deleteTask(id);
     }
 }

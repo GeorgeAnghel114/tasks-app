@@ -54,6 +54,17 @@ export class TaskDetailComponent implements OnInit {
   updateTask() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'))
     this.taskService.updateTask(this.allTask, id).subscribe();
+    alert("Task Updated")
+    this.redirect();
+  }
+
+  deleteTask(){
+    const id: number = Number(this.route.snapshot.paramMap.get('id'))
+    console.log(id)
+    this.taskService.deleteTaskById(id).subscribe()
+    alert("Task Deleted")
+    this.redirect();
+
   }
 
 }

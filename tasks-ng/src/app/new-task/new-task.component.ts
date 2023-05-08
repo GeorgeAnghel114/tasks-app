@@ -47,5 +47,7 @@ export class NewTaskComponent implements OnInit{
     this.allTask!.status=this.status;
     this.allTask!.duedate=this.duedate;
     this.taskService.addNewTask(this.allTask).subscribe();
+    alert("Task added!")
+    this.router.navigate(['/home'])
   }
 }

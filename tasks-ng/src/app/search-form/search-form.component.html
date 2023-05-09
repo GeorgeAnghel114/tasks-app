@@ -13,7 +13,7 @@
         <option
           *ngFor="let client of (clients | async)"
           [value]="client.id">
-          {{client.username}}</option>
+          {{client.email}}</option>
       </select>    </div>
     <div class="form-group">
       <label for="subject">Subject</label>

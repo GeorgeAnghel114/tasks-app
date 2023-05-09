@@ -29,7 +29,7 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public void addTaskOfClient(TaskDTO taskDTO) {
+    public Task addTaskOfClient(TaskDTO taskDTO) {
         Task task = new Task();
         Client client = clientService.findUserByEmail(taskDTO.getClientEmail());
         task.setSubject(taskDTO.getSubject());
@@ -41,6 +41,8 @@ public class TaskService {
         List<Task> taskList = client.getTaskList();
         taskList.add(task);
         addTask(task);
+
+        return task;
     }
 
     public List<Task> getTasksOfClient(String email) {
@@ -52,7 +54,7 @@ public class TaskService {
         return taskRepository.findAllTasks();
     }
 
-    public void updateTask(TaskDTO taskDTO, Long id) {
+    public Task updateTask(TaskDTO taskDTO, Long id) {
         Task task = getTaskById(id);
         Client client = clientService.findUserByEmail(taskDTO.getClientEmail());
         task.setClient(client);
@@ -61,6 +63,7 @@ public class TaskService {
         task.setStatus(taskDTO.getStatus());
         task.setSubject(taskDTO.getSubject());
         addTask(task);
+        return task;
     }
 
     public List<Task> getSearchParams(SearchDTO searchDTO) {
@@ -70,7 +73,7 @@ public class TaskService {
                 searchDTO.getClientId());
     }
 
-    public Task deleteTask(Long id){
+    public Task deleteTask(Long id) {
         Task task = getTaskById(id);
         task.setDeleted(true);
         return taskRepository.save(task);

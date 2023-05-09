@@ -10,7 +10,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +30,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email"),
-@UniqueConstraint(columnNames = "username")})
+        @UniqueConstraint(columnNames = "username")})
 public class Client implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

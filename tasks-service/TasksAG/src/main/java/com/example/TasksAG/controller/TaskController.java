@@ -38,36 +38,60 @@ public class TaskController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok().body(taskService.getTasksOfClient(email));
-//        return new ResponseEntity<>(taskService.getTasksOfClient(email),HttpStatus.OK);
     }
 
     @GetMapping("/all-tasks")
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    public ResponseEntity<?> getAllTasks() {
+        try {
+            return ResponseEntity.ok().body(taskService.getAllTasks());
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Clients not found!");
+        }
     }
 
     @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable String id) {
-        return taskService.getTaskById(Long.valueOf(id));
+    public ResponseEntity<?> getTaskById(@PathVariable String id) {
+        try {
+            return ResponseEntity.ok().body(taskService.getTaskById(Long.valueOf(id)));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Task not found!");
+        }
     }
 
     @PostMapping("/add-task")
-    public void addClientTask(@RequestBody TaskDTO taskDTO) {
-        taskService.addTaskOfClient(taskDTO);
+    public ResponseEntity<?> addClientTask(@RequestBody TaskDTO taskDTO) {
+        try {
+            return ResponseEntity.ok().body(taskService.addTaskOfClient(taskDTO));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Can't add task, try again!");
+        }
+
     }
 
     @PutMapping("/update-task/{id}")
-    public void updateTask(@PathVariable String id, @RequestBody TaskDTO taskDTO) {
-        taskService.updateTask(taskDTO, Long.valueOf(id));
+    public ResponseEntity<?> updateTask(@PathVariable String id, @RequestBody TaskDTO taskDTO) {
+        try {
+            return ResponseEntity.ok().body(taskService.updateTask(taskDTO, Long.valueOf(id)));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Could not update the task, try again!");
+        }
     }
 
     @PostMapping("/search")
-    public List<Task> searchParams(@RequestBody SearchDTO searchDTO) {
-        return taskService.getSearchParams(searchDTO);
+    public ResponseEntity<?> searchParams(@RequestBody SearchDTO searchDTO) {
+        try {
+            return ResponseEntity.ok().body(taskService.getSearchParams(searchDTO));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Something went wrong, try again!");
+        }
     }
 
     @DeleteMapping("/delete-task/{id}")
-    public Task deleteTask(@PathVariable Long id) {
-        return taskService.deleteTask(id);
+    public ResponseEntity<?> deleteTask(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok().body(taskService.deleteTask(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Could not delete the task! Try again!");
+        }
     }
 }

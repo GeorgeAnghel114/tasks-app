@@ -5,13 +5,10 @@ import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.domain.dto.LoginResponse;
 import com.example.TasksAG.security.AuthenticationRequest;
 import com.example.TasksAG.security.JWTTokenHelper;
+import com.example.TasksAG.service.AuthenticationService;
 import com.example.TasksAG.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,57 +20,56 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/client")
 @CrossOrigin(value = {"*"})
 public class ClientController {
     private final ClientService clientService;
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationService authenticationService;
 
     @Autowired
     JWTTokenHelper jwtTokenHelper;
 
-    public ClientController(ClientService clientService) {
+    public ClientController(ClientService clientService,
+                            AuthenticationService authenticationService) {
         this.clientService = clientService;
+        this.authenticationService = authenticationService;
     }
 
     @GetMapping("/{id}")
-    public Client getClientById(@PathVariable("id") Long id) {
-        return clientService.getClientById(id);
+    public ResponseEntity<?> getClientById(@PathVariable("id") Long id) {
+        try {
+            return ResponseEntity.ok().body(clientService.getClientById(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("User not found!");
+        }
     }
 
     @GetMapping("/all-clients")
-    public List<Client> getAllClients() {
-        return clientService.getAllClients();
+    public ResponseEntity<?> getAllClients() {
+        try{
+            return ResponseEntity.ok().body(clientService.getAllClients());
+        }catch (Exception e){
+            return ResponseEntity.status(401).body("Users not found!");
+        }
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody ClientDTO clientDTO) {
-        try{
+        try {
             clientService.addClient(clientDTO);
             return ResponseEntity.ok().body(clientDTO);
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(401).body(e.getMessage());
         }
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
-                        authenticationRequest.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        Client client = (Client) authentication.getPrincipal();
-        String jwtToken = jwtTokenHelper.generateToken(client);
-        LoginResponse response = new LoginResponse();
-        response.setToken(jwtToken);
-        response.setUserId(client.getId());
-        response.setUsername(client.getUsername());
+        LoginResponse response = authenticationService.authenticate(authenticationRequest);
         return ResponseEntity.ok(response);
     }
+
 
 }

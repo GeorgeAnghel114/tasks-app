@@ -36,8 +36,6 @@ public class Client implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Column(unique = true)
-//    @UniqueConstraint(columnNames = "email")
     private String email;
     private String username;
     private String password;

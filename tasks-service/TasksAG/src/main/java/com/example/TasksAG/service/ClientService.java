@@ -33,12 +33,7 @@ public class ClientService implements UserDetailsService {
     }
 
     public void addClient(ClientDTO clientDTO) throws Exception {
-        if(clientRepository.existsClientByUsername(clientDTO.getUsername())){
-            throw new Exception("Username already exists!");
-        }
-        if(clientRepository.existsClientByEmail(clientDTO.getEmail())){
-            throw new Exception("Email already exists!");
-        }
+        userAlreadyExists(clientDTO);
 
         Client client = Client.builder()
                 .email(clientDTO.getEmail())
@@ -49,6 +44,15 @@ public class ClientService implements UserDetailsService {
         clientRepository.save(client);
     }
 
+    public void userAlreadyExists(ClientDTO clientDTO) throws Exception {
+        if (clientRepository.existsClientByUsername(clientDTO.getUsername())) {
+            throw new Exception("Username already exists!");
+        }
+        if (clientRepository.existsClientByEmail(clientDTO.getEmail())) {
+            throw new Exception("Email already exists!");
+        }
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Client user = clientRepository.findClientByUsername(username);
@@ -57,6 +61,7 @@ public class ClientService implements UserDetailsService {
         }
         return user;
     }
+
 
     public Client findUserByEmail(String email) {
         return clientRepository.findClientByEmail(email);

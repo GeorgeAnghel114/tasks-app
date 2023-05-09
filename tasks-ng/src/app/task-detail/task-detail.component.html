@@ -13,8 +13,8 @@
           <select id="name" name="name" [(ngModel)]="allTask.clientEmail" class="form-control">{{allTask.clientEmail}}
             <option
               *ngFor="let client of (allClients | async)"
-              [value]="client.username">
-              {{client.username}}</option>
+              [value]="client.email">
+              {{client.email}}</option>
           </select>
         </div>
       </div>

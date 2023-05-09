@@ -15,7 +15,7 @@
             required #name="ngModel"
           >
             <option
-              *ngFor="let client of (allClients | async)" [value]="client.username">
+              *ngFor="let client of (allClients | async)" [value]="client.email">
               {{client.email}}</option>
           </select>
           <div *ngIf="name.touched && !name.valid"

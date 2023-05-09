@@ -5,7 +5,6 @@ import com.example.TasksAG.domain.dto.SearchDTO;
 import com.example.TasksAG.domain.dto.TaskDTO;
 import com.example.TasksAG.service.ClientService;
 import com.example.TasksAG.service.TaskService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,7 +34,7 @@ public class TaskController {
 
     @GetMapping("/tasks/{email}")
     public ResponseEntity<List<Task>> getClientTasks(@PathVariable String email) {
-        if(Objects.equals(email, "")){
+        if (Objects.equals(email, "")) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok().body(taskService.getTasksOfClient(email));
@@ -54,12 +53,14 @@ public class TaskController {
 
     @PostMapping("/add-task")
     public void addClientTask(@RequestBody TaskDTO taskDTO) {
+        System.out.println(taskDTO.getClientEmail());
+        System.out.println(taskDTO.toString());
+        System.out.println("intr in controleeer");
         taskService.addTaskOfClient(taskDTO);
     }
 
     @PutMapping("/update-task/{id}")
     public void updateTask(@PathVariable String id, @RequestBody TaskDTO taskDTO) {
-        System.out.println("client name   " + taskDTO.getClientEmail());
         taskService.updateTask(taskDTO, Long.valueOf(id));
     }
 

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {Client, LoggedUser} from "../client";
+import {catchError, map, Observable, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,20 @@ export class AuthenticationService {
   constructor(public http: HttpClient) {
 
   }
-  register(client:Client){
-    return this.http.post<Client>("http://localhost:8080/api/client/register",client)
+  register(client:Client):Observable<boolean>{
+    return this.http.post<Client>("http://localhost:8080/api/client/register",client,{
+      observe:'response'
+    })
+      .pipe(
+        map((response:HttpResponse<any>)=>{
+          console.log(response)
+          return true;
+        }),
+        catchError((error: HttpErrorResponse)=>{
+          console.log(error)
+          return throwError(error.error)
+        })
+      )
   }
 
   login(username: string,token:string): void {

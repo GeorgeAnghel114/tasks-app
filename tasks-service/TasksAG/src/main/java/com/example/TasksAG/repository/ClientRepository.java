@@ -18,4 +18,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             nativeQuery = true)
     List<Client> getAllClientsUsername();
 
+    boolean existsClientByUsername(String username);
+    boolean existsClientByEmail(String email);
+
 }

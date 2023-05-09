@@ -41,7 +41,12 @@
         <div *ngIf="password.touched && !password.valid"
              class="alert alert-danger">
           Email is required
-        </div>      </div>
+        </div>
+
+      </div>
+      <div *ngIf="showMessage==true">
+        <p class="text-danger">{{message}}</p>
+      </div>
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>

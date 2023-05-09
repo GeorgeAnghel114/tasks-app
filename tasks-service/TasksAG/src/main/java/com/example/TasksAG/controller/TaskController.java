@@ -5,6 +5,9 @@ import com.example.TasksAG.domain.dto.SearchDTO;
 import com.example.TasksAG.domain.dto.TaskDTO;
 import com.example.TasksAG.service.ClientService;
 import com.example.TasksAG.service.TaskService;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/task")
@@ -30,8 +34,12 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{email}")
-    public List<Task> getClientTasks(@PathVariable String email) {
-        return taskService.getTasksOfClient(email);
+    public ResponseEntity<List<Task>> getClientTasks(@PathVariable String email) {
+        if(Objects.equals(email, "")){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok().body(taskService.getTasksOfClient(email));
+//        return new ResponseEntity<>(taskService.getTasksOfClient(email),HttpStatus.OK);
     }
 
     @GetMapping("/all-tasks")

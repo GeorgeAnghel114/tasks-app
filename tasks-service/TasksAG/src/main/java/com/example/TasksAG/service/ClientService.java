@@ -32,8 +32,14 @@ public class ClientService implements UserDetailsService {
         return clientRepository.findAll();
     }
 
-    //todo can email be used - > verificare daca emailul exista deja in db
-    public void addClient(ClientDTO clientDTO) {
+    public void addClient(ClientDTO clientDTO) throws Exception {
+        if(clientRepository.existsClientByUsername(clientDTO.getUsername())){
+            throw new Exception("Username already exists!");
+        }
+        if(clientRepository.existsClientByEmail(clientDTO.getEmail())){
+            throw new Exception("Email already exists!");
+        }
+
         Client client = Client.builder()
                 .email(clientDTO.getEmail())
                 .username(clientDTO.getUsername())

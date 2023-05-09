@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/client")
@@ -50,9 +51,13 @@ public class ClientController {
     }
 
     @PostMapping("/register")
-    public ClientDTO register(@RequestBody ClientDTO clientDTO) {
-        clientService.addClient(clientDTO);
-        return clientDTO;
+    public ResponseEntity<?> register(@RequestBody ClientDTO clientDTO) {
+        try{
+            clientService.addClient(clientDTO);
+            return ResponseEntity.ok().body(clientDTO);
+        } catch (Exception e){
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")

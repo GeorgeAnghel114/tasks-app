@@ -53,9 +53,6 @@ public class TaskController {
 
     @PostMapping("/add-task")
     public void addClientTask(@RequestBody TaskDTO taskDTO) {
-        System.out.println(taskDTO.getClientEmail());
-        System.out.println(taskDTO.toString());
-        System.out.println("intr in controleeer");
         taskService.addTaskOfClient(taskDTO);
     }
 

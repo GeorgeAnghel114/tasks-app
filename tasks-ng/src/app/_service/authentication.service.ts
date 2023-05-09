@@ -26,7 +26,7 @@ export class AuthenticationService {
       )
   }
 
-  login(username: string,token:string): void {
+  saveIntoLocalStorage(username: string, token: string): void {
     localStorage.setItem('currentUser', username);
     localStorage.setItem('token', token);
   }

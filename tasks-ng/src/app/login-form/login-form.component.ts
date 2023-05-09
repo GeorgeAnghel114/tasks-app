@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Client} from "../client";
 import {AuthenticationService} from "../_service/authentication.service";
 import {Router} from "@angular/router";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-login-form',
@@ -10,6 +11,8 @@ import {Router} from "@angular/router";
 })
 export class LoginFormComponent {
   client: Client = {};
+  message: string = "";
+  showMessage: boolean = false;
 
 
   constructor(private _auth: AuthenticationService, private _router: Router) {
@@ -20,28 +23,37 @@ export class LoginFormComponent {
 
   login(): void {
     if (this.client.username != undefined && this.client.password != undefined) {
-      this._auth.loginRequest(this.client).subscribe(response => {
-        //todo rename login - functia care salveaza in local storage
-        this._auth.login(response.username, response.token);
-
-        console.log(response)
-        if (response) {
-          this._router.navigate(['home'])
-          console.log(localStorage.getItem('value'))
-
-        } else {
-          alert("wrong username or password")
+      this._auth.loginRequest(this.client).subscribe({
+        error:(error) => {
+          this.message=error.error.message;
+          this.showMessage=true;
+        },
+        next:(response)=>{
+            this._auth.saveIntoLocalStorage(response.username, response.token);
+          if (response) {
+                this._router.navigate(['home'])
+              }
         }
-      }, error => {
-        console.log(error)
-        alert("Wrong credentials, try again or make an account!")
-        // this._router.navigate(['register'])
+      }
 
-      })
+        // response => {
+        //   this._auth.saveIntoLocalStorage(response.username, response.token);
+        //   console.log(response)
+        //   if (response) {
+        //     this._router.navigate(['home'])
+        //   } else {
+        //     alert("wrong username or password")
+        //   }
+        // }
+      )
+
     }
   }
 
-  onSubmit() {
-    console.log("you logged in")
+  resetForm(myForm: NgForm) {
+    this.showMessage = false;
+    myForm.resetForm();
   }
 }
+
+

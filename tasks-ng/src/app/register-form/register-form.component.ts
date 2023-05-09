@@ -10,7 +10,7 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent {
-  message: String = "";
+  message: string = "";
   showMessage: boolean = false;
   client: Client = {};
 

@@ -29,9 +29,14 @@
             Password is required
           </div>
         </div>
+        <div *ngIf="showMessage==true">
+          <p class="text-danger">{{message}}</p>
+        </div>
         <button type="submit" [disabled]="!userForm.form.valid"
                 class="btn btn-info">Login
         </button>
+        <button type="button"
+                class="btn btn-danger" (click)="resetForm(userForm)">Reset form</button>
       </form>
       <a routerLink="/register">Don't have an account?</a>
     </div>

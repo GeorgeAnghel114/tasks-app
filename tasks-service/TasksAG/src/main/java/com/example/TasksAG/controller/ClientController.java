@@ -1,6 +1,5 @@
 package com.example.TasksAG.controller;
 
-import com.example.TasksAG.domain.Client;
 import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.domain.dto.LoginResponse;
 import com.example.TasksAG.security.AuthenticationRequest;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/client")
@@ -48,9 +46,9 @@ public class ClientController {
 
     @GetMapping("/all-clients")
     public ResponseEntity<?> getAllClients() {
-        try{
+        try {
             return ResponseEntity.ok().body(clientService.getAllClients());
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(401).body("Users not found!");
         }
     }
@@ -67,8 +65,12 @@ public class ClientController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        LoginResponse response = authenticationService.authenticate(authenticationRequest);
-        return ResponseEntity.ok(response);
+        try {
+            LoginResponse response = authenticationService.authenticate(authenticationRequest);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Something went wrong,try again!");
+        }
     }
 
 

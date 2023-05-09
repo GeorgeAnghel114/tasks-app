@@ -72,6 +72,4 @@ public class ClientController {
             return ResponseEntity.status(401).body("Something went wrong,try again!");
         }
     }
-
-
 }

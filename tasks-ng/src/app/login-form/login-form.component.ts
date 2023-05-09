@@ -21,39 +21,44 @@ export class LoginFormComponent {
     }
   }
 
-  login(): void {
-    if (this.client.username != undefined && this.client.password != undefined) {
-      this._auth.loginRequest(this.client).subscribe({
-        error:(error) => {
-          this.message=error.error.message;
-          this.showMessage=true;
-        },
-        next:(response)=>{
-            this._auth.saveIntoLocalStorage(response.username, response.token);
-          if (response) {
-                this._router.navigate(['home'])
-              }
-        }
-      }
+  // login(): void {
+  //   if (this.client.username != undefined && this.client.password != undefined) {
+  //     this._auth.loginRequest(this.client).subscribe(response => {
+  //       this._auth.saveIntoLocalStorage(response.username, response.token);
+  //       console.log(response)
+  //       if (response) {
+  //         this._router.navigate(['home'])
+  //       } else {
+  //         alert("wrong username or password")
+  //       }
+  //     }, error => {
+  //       console.log(error)
+  //       alert("Wrong credentials, try again or make an account!")
+  //     })
+  //   }
 
-        // response => {
-        //   this._auth.saveIntoLocalStorage(response.username, response.token);
-        //   console.log(response)
-        //   if (response) {
-        //     this._router.navigate(['home'])
-        //   } else {
-        //     alert("wrong username or password")
-        //   }
-        // }
-      )
 
-    }
-  }
-
+  // }
   resetForm(myForm: NgForm) {
     this.showMessage = false;
     myForm.resetForm();
   }
+
+  login(): void {
+    if (this.client.username != undefined && this.client.password != undefined) {
+      this._auth.loginRequest(this.client).subscribe({
+        error:(error) => {
+          this.message=error.error;
+          this.showMessage=true;
+          console.log(this.message)
+        },
+        next:(response)=>{
+          this._auth.saveIntoLocalStorage(response.username, response.token);
+          if (response) {
+            this._router.navigate(['home'])
+          }
+        }
+      })
+    }
+  }
 }
-
-

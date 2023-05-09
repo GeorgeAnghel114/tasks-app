@@ -2,8 +2,7 @@ import {Component} from '@angular/core';
 import {Client, RegisterUser} from "../client";
 import {AuthenticationService} from "../_service/authentication.service";
 import {Router} from "@angular/router";
-import { FormGroup,NgForm} from "@angular/forms";
-import {throwError} from "rxjs";
+import { NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-register-form',
@@ -16,7 +15,8 @@ export class RegisterFormComponent {
   showMessage:boolean = false;
   client: Client = {};
 
-  constructor(private _auth:AuthenticationService, private _router:Router) {
+  constructor(private _auth:AuthenticationService,
+              private _router:Router,) {
   }
 
   register() {
@@ -28,7 +28,6 @@ export class RegisterFormComponent {
         error:(error)=>{
           this.message=error;
           this.showMessage=true;
-          console.log(this.message)
         }
       }
     )
@@ -44,7 +43,7 @@ export class RegisterFormComponent {
     // })
   }
 
-  resetForm(form: FormGroup | NgForm) {
-    form.reset();
+  resetForm(myForm: NgForm) {
+    myForm.resetForm();
   }
 }

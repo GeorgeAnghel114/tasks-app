@@ -1,5 +1,7 @@
 <div class="container">
   <app-navbar></app-navbar>
+  <h1>My Tasks</h1>
+  <div *ngIf="tasks?.length; else NoTasks">
   <table class="table table-bordered">
     <thead>
     <tr>
@@ -20,4 +22,8 @@
     </tr>
     </tbody>
   </table>
+  </div>
+  <ng-template #NoTasks>
+    <p>You don't have any assigned tasks</p>
+  </ng-template>
 </div>

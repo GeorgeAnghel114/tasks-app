@@ -10,8 +10,8 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Builder
 @ToString
+@Builder
 public class TaskDTO {
     private Long taskId;
     private String subject;
@@ -20,4 +20,11 @@ public class TaskDTO {
     private boolean isDeleted;
     private String clientEmail;
     private Long clientId;
+
+//    public TaskDTO(String subject, LocalDate duedate, String status, String clientEmail) {
+//        this.subject = subject;
+//        this.duedate = duedate;
+//        this.status = status;
+//        this.clientEmail = clientEmail;
+//    }
 }

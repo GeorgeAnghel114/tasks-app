@@ -15,7 +15,9 @@ import {Observable, of} from "rxjs";
   styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
-  // @Input() allTask?: AllTask;
+  Rde: boolean = false;
+  buttonsDisabled: boolean = true;
+  inputsDisabled: boolean = true;
   allTask?: AllTask;
   allClients: Observable<Client[]> = of([]);
   newTask!: AllTask;
@@ -64,7 +66,12 @@ export class TaskDetailComponent implements OnInit {
     this.taskService.deleteTaskById(id).subscribe()
     alert("Task Deleted")
     this.redirect();
+  }
 
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+    this.buttonsDisabled = !this.buttonsDisabled;
+    this.inputsDisabled = !this.inputsDisabled;
   }
 
 }

@@ -1,5 +1,7 @@
 <div class="container">
   <app-navbar></app-navbar>
+  <h1>All Tasks</h1>
+  <div *ngIf="allTask?.length; else NoTasks">
   <table class="table table-bordered">
     <thead>
     <tr>
@@ -22,4 +24,8 @@
     </tr>
     </tbody>
   </table>
+  </div>
+  <ng-template #NoTasks>
+    <p>No Tasks</p>
+  </ng-template>
 </div>

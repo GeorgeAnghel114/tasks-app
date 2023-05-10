@@ -40,7 +40,8 @@ public class TaskService {
         task.setClientId(client.getId());
         List<Task> taskList = client.getTaskList();
         taskList.add(task);
-        addTask(task);
+//        addTask(task);
+        taskRepository.save(task);
 
         return task;
     }

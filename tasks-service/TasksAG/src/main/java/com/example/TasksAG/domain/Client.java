@@ -43,7 +43,7 @@ public class Client implements UserDetails {
     private List<String> roles = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Task> taskList;
+    private List<Task> taskList=new ArrayList<>();
 
     @Override
     @JsonIgnore

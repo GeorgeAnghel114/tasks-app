@@ -13,7 +13,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled=true,proxyTargetClass=true)
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private ClientService clientService;

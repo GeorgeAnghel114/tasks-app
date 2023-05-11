@@ -6,6 +6,7 @@ public class AuthenticationRequest {
 
     public AuthenticationRequest() {
     }
+
     public String getUsername() {
         return username;
     }
@@ -13,4 +14,5 @@ public class AuthenticationRequest {
     public String getPassword() {
         return password;
     }
+
 }

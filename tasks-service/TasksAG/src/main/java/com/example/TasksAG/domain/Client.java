@@ -37,6 +37,7 @@ public class Client implements UserDetails {
     private Long id;
     private String email;
     private String username;
+    @JsonIgnore
     private String password;
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
@@ -52,21 +53,25 @@ public class Client implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

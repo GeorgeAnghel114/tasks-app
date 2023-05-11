@@ -13,4 +13,5 @@ public class SearchDTO {
     private Long clientId;
     private String subject;
     private LocalDate duedate;
+    private String status;
 }

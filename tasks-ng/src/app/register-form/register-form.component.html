@@ -1,35 +1,32 @@
-<div class="container">
+<div class="container col-5">
 <div class="card my-5">
   <div class="card-body">
     <h2>Register</h2>
     <form (ngSubmit)="!userForm.invalid && register()" #userForm="ngForm" >
       <div class="form-group">
-        <label for="email">Email</label>
+        <label class="required" for="email">Email</label>
         <input type="email" [(ngModel)]="client.email"
                class="form-control"
                id="email"
                name="email"
                placeholder="Enter your email address"
+               maxlength="250"
                required
                email>
-
-        <!--               required #email="ngModel"-->
-<!--        <div *ngIf="email.touched && !email.valid"-->
-<!--             class="alert alert-danger">-->
-<!--          Email is required-->
-<!--        </div>-->
         <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid"
              class="alert alert-danger">
           <p>Please enter a valid email address.</p>
         </div>
       </div>
       <div class="form-group">
-        <label for="username">Username</label>
+        <label class="required" for="username">Username</label>
         <input type="username" [(ngModel)]="client.username"
                class="form-control"
                id="username"
                name="username"
                placeholder="Enter your username"
+               maxlength="250"
+
                required #username="ngModel">
         <div *ngIf="username.touched && !username.valid"
              class="alert alert-danger">
@@ -37,12 +34,13 @@
           Username is required
         </div>      </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label class="required" for="password">Password</label>
         <input type="password" [(ngModel)]="client.password"
                class="form-control"
                id="password"
                name="password"
                placeholder="Enter your password"
+               maxlength="250"
                minlength="6"
                required #password="ngModel">
         <div *ngIf="password.touched && !password.valid"

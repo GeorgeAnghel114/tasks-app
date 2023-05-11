@@ -5,14 +5,16 @@ import com.example.TasksAG.domain.Task;
 import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.repository.ClientRepository;
 import com.example.TasksAG.service.ClientService;
-import org.checkerframework.checker.units.qual.C;
+import lombok.Lombok;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
@@ -34,6 +36,7 @@ public class ClientServiceTests {
     private Task task2;
     private final String username = "test";
     private final String email = "test";
+    private Client client;
 
     @Mock
     private ClientRepository clientRepository;
@@ -42,7 +45,6 @@ public class ClientServiceTests {
     private PasswordEncoder passwordEncoder;
     @InjectMocks
     private ClientService clientService;
-
 
     @BeforeEach
     public void init() {
@@ -101,25 +103,24 @@ public class ClientServiceTests {
         assertEquals(clientList.size(), result.size());
     }
 
-//    @Test
-//    public void shouldAddClient_GivenClientDTO() throws Exception {
-//
-//        ClientDTO clientDTO = ClientDTO.builder()
-//                .password("123")
-//                .email("123")
-//                .username("123").build();
-//
-//        when(passwordEncoder.encode(clientDTO.getPassword())).thenReturn("encodedPassword");
-//
-//        Client result = clientService.addClient(clientDTO);
-//
-//        verify(clientRepository, times(1)).save(any(Client.class));
-//
-//        assertNotNull(result);
-//    }
+    @Test
+    public void shouldAddClient_GivenClientDTO() throws Exception {
+
+        ClientDTO clientDTO = new ClientDTO("123", "123", "123");
+
+
+        when(clientRepository.existsClientByUsername(clientDTO.getUsername())).thenReturn(false);
+        when(clientRepository.existsClientByEmail(clientDTO.getEmail())).thenReturn(false);
+        when(passwordEncoder.encode(clientDTO.getPassword())).thenReturn("encodedPassword");
+        Client result = clientService.addClient(clientDTO);
+
+        verify(clientRepository, times(1)).save(any(Client.class));
+
+        assertNotNull(result);
+    }
 
     @Test
-    public void testFindUserByEmail(){
+    public void testFindUserByEmail() {
         Client client = new Client();
         client.setEmail(email);
 
@@ -127,7 +128,7 @@ public class ClientServiceTests {
         Client actualClient = clientService.findUserByEmail(email);
 
 
-        assertEquals(client,actualClient);
-        assertEquals(email,actualClient.getEmail());
+        assertEquals(client, actualClient);
+        assertEquals(email, actualClient.getEmail());
     }
 }

@@ -15,6 +15,7 @@ export class SearchFormComponent implements OnInit {
   searchId = null;
   searchSubject = null;
   searchDuedate = null;
+  searchStatus = null;
   // searchForm: SearchForm = {};
   clients?: Observable<Client[]>
   allTask?: AllTask[] = [];
@@ -37,7 +38,8 @@ export class SearchFormComponent implements OnInit {
     const params: SearchForm = {
       clientId: this.searchId!,
       subject: this.searchSubject!,
-      duedate: this.searchDuedate!
+      duedate: this.searchDuedate!,
+      status:this.searchStatus!,
     }
     this.taskService.searchTasks(params).subscribe((res) => {
       this.allTask = res

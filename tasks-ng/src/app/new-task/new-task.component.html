@@ -7,7 +7,7 @@
     <form #myForm="ngForm" (ngSubmit)="!myForm.invalid && addNewTask()">
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="name">Assigned to:</label>
+          <label class="required" for="name">Assigned to:</label>
           <select
             id="name"
             name="name"
@@ -26,14 +26,15 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="subject">Subject</label>
+        <label  class="required" for="subject">Subject</label>
         <input type="text"
-               class="form-control"
+               class="form-control required"
                id="subject"
                name="subject"
                placeholder="Subject"
                [(ngModel)]="subject"
               required #test="ngModel"
+
         >
         <div *ngIf="test.touched && !test.valid"
              class="alert alert-danger">
@@ -43,7 +44,7 @@
 
       </div>
       <div class="form-group">
-        <label for="duedate">Due date:</label>
+        <label class="required" for="duedate">Due date:</label>
         <input type="date"
                class="form-control"
                id="duedate"
@@ -60,7 +61,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="inputState">Status: </label>
+          <label class="required" for="inputState">Status: </label>
           <select [(ngModel)]="status"
                   id="inputState"
                   name="inputState"
@@ -75,7 +76,7 @@
           </select>
           <div *ngIf="state.touched && !state.valid"
                class="alert alert-danger">
-            User is required
+            Status is required
           </div>
         </div>
       </div>

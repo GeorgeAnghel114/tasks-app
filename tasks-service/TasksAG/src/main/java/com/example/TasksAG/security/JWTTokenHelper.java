@@ -61,7 +61,7 @@ public class JWTTokenHelper {
 
         return Jwts.builder()
                 .setIssuer(appName)
-                .setSubject(user.getEmail())
+                .setSubject(user.getUsername())
                 .claim("roles", user.getRoles())
                 .setAudience(String.valueOf(user.getId()))
                 .setIssuedAt(new Date())

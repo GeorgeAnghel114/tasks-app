@@ -18,4 +18,5 @@ export interface SearchForm {
   clientId:number | null;
   subject:string | null;
   duedate:string | null;
+  status:string | null;
 }

@@ -46,7 +46,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/api/task/update-task/*",
                                 "/api/client/all-clients",
                                 "/api/task/search",
-                                "/delete-task/*"
+                                "/api/task/delete-task/*",
+                        "/api/client/email/**"
                         ).hasRole("USER")
                         .anyRequest().authenticated())
                 .addFilterBefore(new JWTAuthenticationFilter(clientService, jWTTokenHelper),

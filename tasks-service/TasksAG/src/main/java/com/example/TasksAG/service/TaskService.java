@@ -47,7 +47,7 @@ public class TaskService {
     }
 
     public List<Task> getTasksOfClient(String email) {
-        Client client = clientService.findUserByEmail(email);
+        Client client = clientService.findUserByUsername(email);
         return taskRepository.findAllByTaskByDateDesc(client.getId());
     }
 
@@ -71,7 +71,8 @@ public class TaskService {
         return taskRepository.findBySearch(
                 searchDTO.getSubject(),
                 searchDTO.getDuedate(),
-                searchDTO.getClientId());
+                searchDTO.getClientId(),
+                searchDTO.getStatus());
     }
 
     public Task deleteTask(Long id) {

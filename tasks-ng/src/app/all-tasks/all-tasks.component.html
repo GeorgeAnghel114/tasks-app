@@ -10,7 +10,7 @@
         <th scope="col">Status</th>
         <th scope="col">Due Date</th>
         <th scope="col">Assigned to</th>
-        <th scope="col"></th>
+        <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -20,7 +20,10 @@
         <td>{{task.status}}</td>
         <td>{{task.duedate}}</td>
         <td>{{task.clientEmail}}</td>
-        <button class="btn btn-success" routerLink="/task-detail/{{task.id}}">Task details</button>
+        <td>
+          <button class="btn btn-success" routerLink="/task-detail/{{task.id}}">Task details</button>
+
+        </td>
       </tr>
       </tbody>
     </table>

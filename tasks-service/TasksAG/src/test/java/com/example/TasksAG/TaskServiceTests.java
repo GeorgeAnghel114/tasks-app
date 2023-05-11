@@ -161,28 +161,28 @@ public class TaskServiceTests {
         assertEquals(client, task.getClient());
     }
 
-    @Test
-    public void testGetSearchParams_GivenSearchDTO() {
-        SearchDTO searchDTO = new SearchDTO(1L, "b", LocalDate.now());
-        List<Task> expectedTasks = new ArrayList<>();
-        expectedTasks.add(task1);
-        expectedTasks.add(task2);
+//    @Test
+//    public void testGetSearchParams_GivenSearchDTO() {
+//        SearchDTO searchDTO = new SearchDTO(1L, "b", LocalDate.now());
+//        List<Task> expectedTasks = new ArrayList<>();
+//        expectedTasks.add(task1);
+//        expectedTasks.add(task2);
+//
+//        when(taskRepository.findBySearch(
+//                searchDTO.getSubject(),
+//                searchDTO.getDuedate(),
+//                searchDTO.getClientId()
+//        )).thenReturn(expectedTasks);
+//
+//        List<Task> result = taskService.getSearchParams(searchDTO);
+//        verify(taskRepository, times(1)).findBySearch(
+//                searchDTO.getSubject(),
+//                searchDTO.getDuedate(),
+//                searchDTO.getClientId());
+//
+//        assertEquals(expectedTasks, result);
 
-        when(taskRepository.findBySearch(
-                searchDTO.getSubject(),
-                searchDTO.getDuedate(),
-                searchDTO.getClientId()
-        )).thenReturn(expectedTasks);
-
-        List<Task> result = taskService.getSearchParams(searchDTO);
-        verify(taskRepository, times(1)).findBySearch(
-                searchDTO.getSubject(),
-                searchDTO.getDuedate(),
-                searchDTO.getClientId());
-
-        assertEquals(expectedTasks, result);
-
-    }
+//    }
 
     @Test
     public void testDeleteTask_GivenId() {

@@ -6,7 +6,6 @@ import com.example.TasksAG.security.AuthenticationRequest;
 import com.example.TasksAG.security.JWTTokenHelper;
 import com.example.TasksAG.service.AuthenticationService;
 import com.example.TasksAG.service.ClientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +25,14 @@ public class ClientController {
     private final ClientService clientService;
     private final AuthenticationService authenticationService;
 
-    @Autowired
-    JWTTokenHelper jwtTokenHelper;
+    private final JWTTokenHelper jwtTokenHelper;
 
     public ClientController(ClientService clientService,
-                            AuthenticationService authenticationService) {
+                            AuthenticationService authenticationService,
+                            JWTTokenHelper jwtTokenHelper) {
         this.clientService = clientService;
         this.authenticationService = authenticationService;
+        this.jwtTokenHelper = jwtTokenHelper;
     }
 
     @GetMapping("/{id}")
@@ -41,6 +41,15 @@ public class ClientController {
             return ResponseEntity.ok().body(clientService.getClientById(id));
         } catch (Exception e) {
             return ResponseEntity.status(401).body("User not found!");
+        }
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> getClientUsername(@PathVariable String email){
+        try{
+            return ResponseEntity.ok().body(clientService.findUserByEmail(email));
+        }catch (Exception e){
+            return ResponseEntity.status(401).body("Email not found!");
         }
     }
 

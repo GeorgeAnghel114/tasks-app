@@ -16,11 +16,11 @@ import java.util.Optional;
 @Service
 public class ClientService implements UserDetailsService {
     private final ClientRepository clientRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
         this.clientRepository = clientRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Client getClientById(Long id) {
@@ -34,11 +34,11 @@ public class ClientService implements UserDetailsService {
 
     public Client addClient(ClientDTO clientDTO) throws Exception {
         userAlreadyExists(clientDTO);
-
+        String encodedPassword = passwordEncoder.encode(clientDTO.getPassword());
         Client client = Client.builder()
                 .email(clientDTO.getEmail())
                 .username(clientDTO.getUsername())
-                .password(passwordEncoder.encode(clientDTO.getPassword()))
+                .password(encodedPassword)
                 .roles(List.of("ROLE_USER"))
                 .build();
         clientRepository.save(client);
@@ -66,5 +66,9 @@ public class ClientService implements UserDetailsService {
 
     public Client findUserByEmail(String email) {
         return clientRepository.findClientByEmail(email);
+    }
+
+    public Client findUserByUsername(String username){
+        return clientRepository.findClientByUsername(username);
     }
 }

@@ -15,7 +15,21 @@
           *ngFor="let client of (clients | async)"
           [value]="client.id">
           {{client.email}}</option>
-      </select></div>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="status">Status :</label>
+      <select id="status"
+              name="status"
+              class="form-control"
+              [(ngModel)]="searchStatus"
+
+      >
+        <option value="New">New</option>
+        <option value="In progress">In progress</option>
+        <option value="Done">Done</option>
+      </select>
+    </div>
     <div class="form-group">
       <label for="subject">Subject</label>
       <input type="text"

@@ -9,7 +9,7 @@
         <th scope="col">Subject</th>
         <th scope="col">Status</th>
         <th scope="col">Due Date</th>
-        <th scope="col"></th>
+        <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -17,8 +17,10 @@
         <th scope="row">{{task.id}}</th>
         <td>{{task.subject}}</td>
         <td>{{task.status}}</td>
-        <td>{{task.duedate}}</td>
-        <button class="btn btn-success" routerLink="/task-detail/{{task.id}}">Task details</button>
+        <td >{{task.duedate}}</td>
+        <td>
+          <button  class="btn btn-success" routerLink="/task-detail/{{task.id}}">Task details</button>
+        </td>
       </tr>
       </tbody>
     </table>

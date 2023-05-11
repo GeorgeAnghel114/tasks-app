@@ -15,7 +15,7 @@ import {Observable, of} from "rxjs";
   styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
-  Rde: boolean = false;
+  editMode: boolean = false;
   buttonsDisabled: boolean = true;
   inputsDisabled: boolean = true;
   allTask?: AllTask;

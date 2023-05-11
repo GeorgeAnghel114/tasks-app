@@ -21,10 +21,5 @@ public class TaskDTO {
     private String clientEmail;
     private Long clientId;
 
-//    public TaskDTO(String subject, LocalDate duedate, String status, String clientEmail) {
-//        this.subject = subject;
-//        this.duedate = duedate;
-//        this.status = status;
-//        this.clientEmail = clientEmail;
-//    }
+
 }

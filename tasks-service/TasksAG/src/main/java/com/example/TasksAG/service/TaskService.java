@@ -63,7 +63,7 @@ public class TaskService {
         task.setDuedate(taskDTO.getDuedate());
         task.setStatus(taskDTO.getStatus());
         task.setSubject(taskDTO.getSubject());
-        addTask(task);
+        taskRepository.save(task);
         return task;
     }
 

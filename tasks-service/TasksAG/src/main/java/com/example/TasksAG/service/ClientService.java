@@ -32,7 +32,7 @@ public class ClientService implements UserDetailsService {
         return clientRepository.findAll();
     }
 
-    public void addClient(ClientDTO clientDTO) throws Exception {
+    public Client addClient(ClientDTO clientDTO) throws Exception {
         userAlreadyExists(clientDTO);
 
         Client client = Client.builder()
@@ -42,6 +42,7 @@ public class ClientService implements UserDetailsService {
                 .roles(List.of("ROLE_USER"))
                 .build();
         clientRepository.save(client);
+        return client;
     }
 
     public void userAlreadyExists(ClientDTO clientDTO) throws Exception {

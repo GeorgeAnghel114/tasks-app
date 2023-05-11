@@ -7,8 +7,6 @@ import com.example.TasksAG.domain.dto.TaskDTO;
 import com.example.TasksAG.repository.TaskRepository;
 import com.example.TasksAG.service.ClientService;
 import com.example.TasksAG.service.TaskService;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -154,18 +152,18 @@ public class TaskServiceTests {
         when(clientService.findUserByEmail(taskDTO.getClientEmail())).thenReturn(client);
         when(taskRepository.save(task)).thenReturn(task);
 
-        Task result = taskService.updateTask(taskDTO,taskId);
+        Task result = taskService.updateTask(taskDTO, taskId);
 
         verify(taskRepository, times(1)).getById(taskId);
-        verify(clientService,times(1)).findUserByEmail(taskDTO.getClientEmail());
-        verify(taskRepository,times(1)).save(task);
+        verify(clientService, times(1)).findUserByEmail(taskDTO.getClientEmail());
+        verify(taskRepository, times(1)).save(task);
 
-        assertEquals(client,task.getClient());
+        assertEquals(client, task.getClient());
     }
 
     @Test
-    public void testGetSearchParams_GivenSearchDTO(){
-        SearchDTO searchDTO = new SearchDTO(1L,"b",LocalDate.now());
+    public void testGetSearchParams_GivenSearchDTO() {
+        SearchDTO searchDTO = new SearchDTO(1L, "b", LocalDate.now());
         List<Task> expectedTasks = new ArrayList<>();
         expectedTasks.add(task1);
         expectedTasks.add(task2);
@@ -177,31 +175,31 @@ public class TaskServiceTests {
         )).thenReturn(expectedTasks);
 
         List<Task> result = taskService.getSearchParams(searchDTO);
-        verify(taskRepository,times(1)).findBySearch(
+        verify(taskRepository, times(1)).findBySearch(
                 searchDTO.getSubject(),
                 searchDTO.getDuedate(),
                 searchDTO.getClientId());
 
-        assertEquals(expectedTasks,result);
+        assertEquals(expectedTasks, result);
 
     }
 
     @Test
-    public void testDeleteTask_GivenId(){
+    public void testDeleteTask_GivenId() {
         Long taskId = 1L;
-        Task task = new Task(1L,"test",LocalDate.now(),"Done",new Client(),false);
+        Task task = new Task(1L, "test", LocalDate.now(), "Done", new Client(), false);
         task.setDeleted(true);
         when(taskRepository.findById(taskId)).thenReturn(Optional.of(task));
         when(taskRepository.save(any(Task.class))).thenReturn(task);
 
         Task result = taskService.deleteTask(taskId);
 
-        verify(taskRepository,times(1)).findById(taskId);
-        verify(taskRepository,times(1)).save(task);
+        verify(taskRepository, times(1)).findById(taskId);
+        verify(taskRepository, times(1)).save(task);
 
         assertTrue(task.isDeleted());
-        assertEquals(task,result);
-        assertEquals(true,task.isDeleted());
+        assertEquals(task, result);
+        assertEquals(true, task.isDeleted());
     }
 
 }

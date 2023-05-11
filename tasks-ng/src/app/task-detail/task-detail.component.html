@@ -49,11 +49,12 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputState">Status:  {{newTask.status}}</label>
-          <select [disabled]="inputsDisabled" id="inputState" class="form-control" name="inputState" [(ngModel)]="allTask.status">
+          <select [disabled]="inputsDisabled" id="inputState" class="form-control" name="inputState"
+                  [(ngModel)]="allTask.status">
             <option value="{{allTask.status}}"
 
             >{{allTask.status}}</option>
-            <option value="New" >New</option>
+            <option value="New">New</option>
             <option value="In progress">In progress</option>
             <option value="Done">Done</option>
           </select>
@@ -64,13 +65,19 @@
                 type="button"
                 (click)="toggleEditMode()"
                 class="btn btn-success"
-        >Edit</button>
+        >Edit
+        </button>
         <div *ngIf="editMode">
-        <button type="submit" class="btn btn-primary mr-auto" [disabled]="!myForm.form.valid && buttonsDisabled">Save</button>
-        <button type="submit" class="btn btn-danger" (click)="deleteTask()" [disabled]="buttonsDisabled">Delete task</button>
-        <button type="button" class="btn btn-danger" (click)="redirect()" [disabled]="buttonsDisabled">Go to homepage</button>
+          <button type="submit" class="btn btn-primary mr-auto" [disabled]="!myForm.form.valid && buttonsDisabled">
+            Save
+          </button>
+          <button type="submit" class="btn btn-danger" (click)="deleteTask()" [disabled]="buttonsDisabled">Delete task
+          </button>
+          <button type="button" class="btn btn-danger" (click)="redirect()" [disabled]="buttonsDisabled">Go to
+            homepage
+          </button>
         </div>
-        </div>
+      </div>
     </form>
   </div>
 </div>

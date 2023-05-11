@@ -15,7 +15,7 @@
           *ngFor="let client of (clients | async)"
           [value]="client.id">
           {{client.email}}</option>
-      </select>    </div>
+      </select></div>
     <div class="form-group">
       <label for="subject">Subject</label>
       <input type="text"
@@ -38,7 +38,7 @@
       >
     </div>
     <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-danger  mr-auto"(click)="resetForm(myForm)">Reset Form</button>
+      <button type="button" class="btn btn-danger  mr-auto" (click)="resetForm(myForm)">Reset Form</button>
       <button type="submit" class="btn btn-primary">Search</button>
     </div>
   </form>

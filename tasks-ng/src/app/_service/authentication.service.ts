@@ -10,16 +10,17 @@ export class AuthenticationService {
   constructor(public http: HttpClient) {
 
   }
-  register(client:Client):Observable<boolean>{
-    return this.http.post<Client>("http://localhost:8080/api/client/register",client,{
-      observe:'response'
+
+  register(client: Client): Observable<boolean> {
+    return this.http.post<Client>("http://localhost:8080/api/client/register", client, {
+      observe: 'response'
     })
       .pipe(
-        map((response:HttpResponse<any>)=>{
+        map((response: HttpResponse<any>) => {
           console.log(response)
           return true;
         }),
-        catchError((error: HttpErrorResponse)=>{
+        catchError((error: HttpErrorResponse) => {
           console.log(error)
           return throwError(error.error)
         })
@@ -42,7 +43,6 @@ export class AuthenticationService {
   public get loggedIn(): boolean {
     return (localStorage.getItem('currentUser') !== null);
   }
-
 
 
 }

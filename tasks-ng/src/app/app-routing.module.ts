@@ -34,26 +34,26 @@ const routes: Routes = [
 
   },
   {
-    path:"all-tasks",
+    path: "all-tasks",
     component: AllTasksComponent,
     canActivate: [AuthGuard],
 
   },
   {
-    path:"task-detail/:id",
+    path: "task-detail/:id",
     component: TaskDetailComponent,
     canActivate: [AuthGuard],
 
   },
   {
-    path:"new-task",
+    path: "new-task",
     component: NewTaskComponent,
     canActivate: [AuthGuard],
 
   },
   {
-    path:'search-form',
-    component:SearchFormComponent,
+    path: 'search-form',
+    component: SearchFormComponent,
     canActivate: [AuthGuard],
 
   }

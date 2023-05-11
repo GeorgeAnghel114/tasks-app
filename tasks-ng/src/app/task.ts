@@ -5,7 +5,6 @@ export interface Task {
   duedate: string;
 
 }
-
 export interface AllTask{
   id?:number;
   subject?: string;

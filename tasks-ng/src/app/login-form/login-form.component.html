@@ -12,9 +12,10 @@
                  placeholder="Enter your email address"
                  required #username="ngModel">
           <div *ngIf="username.touched && !username.valid"
-             class="alert alert-danger">
+               class="alert alert-danger">
 
-          Email is required</div>
+            Email is required
+          </div>
 
         </div>
 
@@ -30,7 +31,8 @@
                class="alert alert-danger">
 
             Password
-            is required</div>
+            is required
+          </div>
 
         </div>
         <div *ngIf="showMessage==true">
@@ -40,7 +42,8 @@
                 class="btn btn-info">Login
         </button>
         <button type="button"
-                class="btn btn-danger" (click)="resetForm(userForm)">Reset form</button>
+                class="btn btn-danger" (click)="resetForm(userForm)">Reset form
+        </button>
       </form>
       <a routerLink="/register">Don't have an account?</a>
     </div>

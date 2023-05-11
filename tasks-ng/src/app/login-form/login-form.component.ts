@@ -47,12 +47,12 @@ export class LoginFormComponent {
   login(): void {
     if (this.client.username != undefined && this.client.password != undefined) {
       this._auth.loginRequest(this.client).subscribe({
-        error:(error) => {
-          this.message=error.error;
-          this.showMessage=true;
+        error: (error) => {
+          this.message = error.error;
+          this.showMessage = true;
           console.log(this.message)
         },
-        next:(response)=>{
+        next: (response) => {
           this._auth.saveIntoLocalStorage(response.username, response.token);
           if (response) {
             this._router.navigate(['home'])

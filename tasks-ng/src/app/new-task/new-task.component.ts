@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {TaskService} from "../_service/task.service";
 import {Observable, of} from "rxjs";
 import {Client} from "../client";
-import { FormGroup,NgForm} from "@angular/forms";
+import {FormGroup, NgForm} from "@angular/forms";
 
 
 @Component({
@@ -14,13 +14,14 @@ import { FormGroup,NgForm} from "@angular/forms";
   templateUrl: './new-task.component.html',
   styleUrls: ['./new-task.component.css']
 })
-export class NewTaskComponent implements OnInit{
+export class NewTaskComponent implements OnInit {
   allClients: Observable<Client[]> = of([]);
-  allTask?: AllTask={};
-  clientEmail:string | undefined;
-  subject:string | undefined;
-  status:string | undefined;
-  duedate:string | undefined;
+  allTask?: AllTask = {};
+  clientEmail: string | undefined;
+  subject: string | undefined;
+  status: string | undefined;
+  duedate: string | undefined;
+
   constructor(private authenticationService: AuthenticationService,
               private clientService: ClientService,
               private router: Router,
@@ -37,15 +38,17 @@ export class NewTaskComponent implements OnInit{
     this.allClients = this.getAllClients();
 
   }
+
   getAllClients(): Observable<Client[]> {
     return this.clientService
       .getAllClients()
   }
-  addNewTask(){
-    this.allTask!.clientEmail=this.clientEmail;
-    this.allTask!.subject=this.subject;
-    this.allTask!.status=this.status;
-    this.allTask!.duedate=this.duedate;
+
+  addNewTask() {
+    this.allTask!.clientEmail = this.clientEmail;
+    this.allTask!.subject = this.subject;
+    this.allTask!.status = this.status;
+    this.allTask!.duedate = this.duedate;
     this.taskService.addNewTask(this.allTask).subscribe();
     alert("Task added!")
     this.router.navigate(['/home'])

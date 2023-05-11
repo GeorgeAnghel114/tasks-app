@@ -46,6 +46,5 @@ export class SearchFormComponent implements OnInit {
       }
     });
 
-
   }
 }

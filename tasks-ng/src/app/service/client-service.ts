@@ -7,18 +7,14 @@ import {Client} from "../client";
 })
 export class ClientService {
   private readonly clientUrl: string;
-  private readonly allClients:string;
+  private readonly allClients: string;
 
   constructor(private http: HttpClient) {
     this.clientUrl = 'http://localhost:8080/api/client/register';
     this.allClients = 'http://localhost:8080/api/client/all-clients';
   }
 
-  public save(client: Client | undefined) {
-    return this.http.post<Client>(this.clientUrl, client);
-  }
-
-  public getAllClients(){
+  public getAllClients() {
     return this.http.get<Client[]>(this.allClients);
 
   }

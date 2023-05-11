@@ -2,28 +2,28 @@
   <app-navbar></app-navbar>
   <h1>All Tasks</h1>
   <div *ngIf="allTask?.length; else NoTasks">
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Subject</th>
-      <th scope="col">Status</th>
-      <th scope="col">Due Date</th>
-      <th scope="col">Assigned to</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let task of allTask">
-      <th scope="row">{{task.id}}</th>
-      <td>{{task.subject}}</td>
-      <td>{{task.status}}</td>
-      <td>{{task.duedate}}</td>
-      <td>{{task.clientEmail}}</td>
-      <button class="btn btn-success" routerLink="/task-detail/{{task.id}}">Task details</button>
-    </tr>
-    </tbody>
-  </table>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Status</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Assigned to</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let task of allTask">
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.subject}}</td>
+        <td>{{task.status}}</td>
+        <td>{{task.duedate}}</td>
+        <td>{{task.clientEmail}}</td>
+        <button class="btn btn-success" routerLink="/task-detail/{{task.id}}">Task details</button>
+      </tr>
+      </tbody>
+    </table>
   </div>
   <ng-template #NoTasks>
     <p>No Tasks</p>

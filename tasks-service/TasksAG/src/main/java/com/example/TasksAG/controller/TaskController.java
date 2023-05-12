@@ -79,6 +79,7 @@ public class TaskController {
 
     @PostMapping("/search")
     public ResponseEntity<?> searchParams(@RequestBody SearchDTO searchDTO) {
+        System.out.println("CLient id:"+searchDTO.getClientId());
         try {
             return ResponseEntity.ok().body(taskService.getSearchParams(searchDTO));
         } catch (Exception e) {

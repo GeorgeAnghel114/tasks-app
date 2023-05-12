@@ -41,6 +41,7 @@ export class SearchFormComponent implements OnInit {
       duedate: this.searchDuedate!,
       status:this.searchStatus!,
     }
+    console.log(params.clientId)
     this.taskService.searchTasks(params).subscribe((res) => {
       this.allTask = res
       if (this.allTask.length === 0) {

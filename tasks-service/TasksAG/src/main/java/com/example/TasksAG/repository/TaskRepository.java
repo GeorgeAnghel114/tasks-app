@@ -19,16 +19,15 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             nativeQuery = true)
     List<Task> findAllTasks();
 
-//    @Query(value = "SELECT t FROM Task t WHERE  t.isDeleted=false and (:subject IS NULL OR LOWER(t.subject) like LOWER(concat('%', cast(:subject as string ),'%'))) " +
-//            "AND (cast(:duedate as date) IS NULL OR t.duedate > :duedate) "+
-//            "AND (:clientId is null or t.client.id=:clientId )"+
-//            "AND (:status is NULL OR t.status LIKE :status)")
-
-    @Query(value = "SELECT t FROM Task t WHERE t.isDeleted = false " +
-            "AND (:subject IS NULL OR LOWER(t.subject) LIKE LOWER(CONCAT('%', CAST(:subject AS string), '%'))) " +
-            "AND (:duedate IS NULL OR t.duedate > :duedate) " +
-            "AND (:clientId IS NULL OR t.client.id = :clientId) " +
-            "AND (:status='' OR t.status = :status)")
+//    @Query(value = "SELECT t FROM Task t WHERE t.isDeleted = false " +
+//            "AND (:subject IS NULL OR LOWER(t.subject) LIKE LOWER(CONCAT('%', CAST(:subject AS string), '%'))) " +
+//            "AND (:duedate IS NULL OR t.duedate > :duedate) " +
+//            "AND (:clientId IS NULL OR t.client.id = :clientId) "
+//           )
+        @Query(value = "SELECT t FROM Task t WHERE  t.isDeleted=false and (:subject IS NULL OR LOWER(t.subject) like LOWER(concat('%', cast(:subject as string ),'%'))) " +
+            "AND (cast(:duedate as date) IS NULL OR t.duedate > :duedate) "+
+            "AND (:clientId is null or t.client.id=:clientId )"+
+               "and (:status IS NULL OR LOWER(t.status) like LOWER(concat('%', cast(:status as string ),'%')))")
     List<Task> findBySearch(@Param("subject") String subject,
                             @Param("duedate") LocalDate duedate,
                             @Param("clientId") Long clientId,

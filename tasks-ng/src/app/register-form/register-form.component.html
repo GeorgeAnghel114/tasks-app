@@ -11,9 +11,9 @@
                name="email"
                placeholder="Enter your email address"
                maxlength="250"
-               required
+               required #email="ngModel"
                email>
-        <div *ngIf="userForm.controls['email'].touched && userForm.controls['email'].invalid"
+        <div *ngIf="email.touched && email.invalid"
              class="alert alert-danger">
           <p>Please enter a valid email address.</p>
         </div>

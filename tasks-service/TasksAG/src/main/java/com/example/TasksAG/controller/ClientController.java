@@ -3,7 +3,6 @@ package com.example.TasksAG.controller;
 import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.domain.dto.LoginResponse;
 import com.example.TasksAG.security.AuthenticationRequest;
-import com.example.TasksAG.security.JWTTokenHelper;
 import com.example.TasksAG.service.AuthenticationService;
 import com.example.TasksAG.service.ClientService;
 import org.springframework.http.ResponseEntity;
@@ -25,14 +24,11 @@ public class ClientController {
     private final ClientService clientService;
     private final AuthenticationService authenticationService;
 
-    private final JWTTokenHelper jwtTokenHelper;
-
     public ClientController(ClientService clientService,
-                            AuthenticationService authenticationService,
-                            JWTTokenHelper jwtTokenHelper) {
+                            AuthenticationService authenticationService) {
         this.clientService = clientService;
         this.authenticationService = authenticationService;
-        this.jwtTokenHelper = jwtTokenHelper;
+
     }
 
     @GetMapping("/{id}")
@@ -45,10 +41,10 @@ public class ClientController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<?> getClientUsername(@PathVariable String email){
-        try{
+    public ResponseEntity<?> getClientUsername(@PathVariable String email) {
+        try {
             return ResponseEntity.ok().body(clientService.findUserByEmail(email));
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(401).body("Email not found!");
         }
     }

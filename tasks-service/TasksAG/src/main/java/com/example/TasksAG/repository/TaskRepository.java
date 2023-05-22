@@ -15,7 +15,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             nativeQuery = true)
     List<Task> findAllByTaskByDateDesc(Long id);
 
-    @Query(value = "select * from task left join client on task.client_id=client.id where is_deleted=false order by  duedate desc",
+    @Query(value = "select * from task left join client on task.client_id=client.id where is_deleted=false order by duedate desc",
             nativeQuery = true)
     List<Task> findAllTasks();
 

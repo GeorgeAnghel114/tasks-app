@@ -21,24 +21,6 @@ export class LoginFormComponent {
     }
   }
 
-  // login(): void {
-  //   if (this.client.username != undefined && this.client.password != undefined) {
-  //     this._auth.loginRequest(this.client).subscribe(response => {
-  //       this._auth.saveIntoLocalStorage(response.username, response.token);
-  //       console.log(response)
-  //       if (response) {
-  //         this._router.navigate(['home'])
-  //       } else {
-  //         alert("wrong username or password")
-  //       }
-  //     }, error => {
-  //       console.log(error)
-  //       alert("Wrong credentials, try again or make an account!")
-  //     })
-  //   }
-
-
-  // }
   resetForm(myForm: NgForm) {
     this.showMessage = false;
     myForm.resetForm();

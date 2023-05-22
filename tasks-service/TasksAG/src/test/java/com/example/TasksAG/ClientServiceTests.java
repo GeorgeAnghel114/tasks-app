@@ -5,16 +5,13 @@ import com.example.TasksAG.domain.Task;
 import com.example.TasksAG.domain.dto.ClientDTO;
 import com.example.TasksAG.repository.ClientRepository;
 import com.example.TasksAG.service.ClientService;
-import lombok.Lombok;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;

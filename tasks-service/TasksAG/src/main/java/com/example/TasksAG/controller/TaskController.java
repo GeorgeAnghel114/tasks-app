@@ -3,7 +3,6 @@ package com.example.TasksAG.controller;
 import com.example.TasksAG.domain.Task;
 import com.example.TasksAG.domain.dto.SearchDTO;
 import com.example.TasksAG.domain.dto.TaskDTO;
-import com.example.TasksAG.service.ClientService;
 import com.example.TasksAG.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +23,9 @@ import java.util.Objects;
 @RequestMapping("/api/task")
 @CrossOrigin(value = {"*"})
 public class TaskController {
-    private final ClientService clientService;
     private final TaskService taskService;
 
-    public TaskController(ClientService clientService, TaskService taskService) {
-        this.clientService = clientService;
+    public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
 
@@ -65,7 +62,6 @@ public class TaskController {
         } catch (Exception e) {
             return ResponseEntity.status(401).body("Can't add task, try again!");
         }
-
     }
 
     @PutMapping("/update-task/{id}")
@@ -79,7 +75,7 @@ public class TaskController {
 
     @PostMapping("/search")
     public ResponseEntity<?> searchParams(@RequestBody SearchDTO searchDTO) {
-        System.out.println("CLient id:"+searchDTO.getClientId());
+        System.out.println("CLient id:" + searchDTO.getClientId());
         try {
             return ResponseEntity.ok().body(taskService.getSearchParams(searchDTO));
         } catch (Exception e) {

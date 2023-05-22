@@ -31,9 +31,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .authorizeRequests(
                         (request) -> request.antMatchers(
-                                "/",
-                                "/api/client",
-                                "/api/client/**",
                                 "/api/client/register",
                                 "/api/client/login").permitAll()
                 )
@@ -44,6 +41,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/api/task/all-tasks",
                                 "/api/task/update-task",
                                 "/api/task/update-task/*",
+                                "/api/client/*",
                                 "/api/client/all-clients",
                                 "/api/task/search",
                                 "/api/task/delete-task/*",
